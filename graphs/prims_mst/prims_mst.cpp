@@ -48,7 +48,6 @@ void PrimsMST(int cost[][LENGTH], int n) {
         min = cost[mi][near[mi]];
       }
     }
-    std::cout << "ti:" << ti << " k:" << k << "\n";
     t[0][ti] = k;
     t[1][ti] = near[k];
     near[k] = 0;
