@@ -32,9 +32,19 @@ double optimized_taylor_series(int x, int n) {
   return optimized_taylor_series(x, n - 1);
 }
 
+double optimized_taylor_series_with_loop(int x, int n) {
+  double re = 1.0;
+  for (; n > 0; --n) {
+    re = 1 + (double)x / (double)n * re;
+  }
+  return re;
+}
+
 int main(int argc, char *argv[]) {
 
   printf("%lf\n", taylor_series(3, 10));
   printf("%lf\n", optimized_taylor_series(3, 10));
+  printf("%lf\n", optimized_taylor_series_with_loop(3, 10));
+  printf("%lf\n", optimized_taylor_series_with_loop(1, 10));
   return 0;
 }
