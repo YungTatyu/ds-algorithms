@@ -52,5 +52,7 @@ int main(int argc, char *argv[]) {
   int num = 3;
   printf("%d\n", combination_with_loop(3, 2));
   printf("%d\n", combinatin(3, 2));
+  printf("%d\n", combination_with_loop(4, 2));
+  printf("%d\n", combinatin(4, 2));
   return 0;
 }
