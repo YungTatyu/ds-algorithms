@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 Array *array_new(size_t size) {
   Array *ptr = (Array *)calloc(1, sizeof(Array));
@@ -25,18 +26,20 @@ Array *array_init(Array *array, size_t size) {
   return array;
 }
 
-void array_delete(Array *array) {
-  array_free_contents(array);
-  free(array);
+void array_delete(Array *arr) {
+  array_free_contents(arr);
+  free(arr);
 }
 
-Array *array_free_contents(Array *array) {
-  free(array->a);
-  return array;
+void array_free_contents(Array *arr) { free(arr->a); }
+
+void array_clear(Array *arr) {
+  memset(arr->a, 0, arr->length * sizeof(int));
+  arr->length = 0;
 }
 
-void array_display(Array *array) {
-  for (size_t i = 0; i < array->length; ++i) {
-    printf("%d", array->a[i]);
+void array_display(Array *arr) {
+  for (size_t i = 0; i < arr->length; ++i) {
+    printf("%d", arr->a[i]);
   }
 }

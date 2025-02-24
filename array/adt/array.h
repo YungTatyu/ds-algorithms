@@ -19,10 +19,12 @@ Array *array_new(size_t size);
  * @brief create actual array with size of given size in a variable
  * @returns Array*|NULL
  */
-Array *array_init(Array *array, size_t size);
+Array *array_init(Array *arr, size_t size);
 
-void array_delete(Array *array);
+void array_delete(Array *arr);
 
-Array *array_free_contents(Array *array);
+void array_free_contents(Array *arr);
 
-void array_display(Array *array);
+void array_clear(Array *arr);
+
+void array_display(Array *arr);
