@@ -13,10 +13,10 @@ typedef struct Array Array;
  * @brief create Array instance in heap
  * @returns Array*|NULL
  */
-Array *array_malloc(size_t size);
+Array *array_new(size_t size);
 
 /**
  * @brief create actual array with size of given size in a variable
  * @returns Array*|NULL
  */
-Array *array_malloc_a(Array *array, size_t size);
+Array *array_init(Array *array, size_t size);
