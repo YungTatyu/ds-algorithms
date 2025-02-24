@@ -27,4 +27,8 @@ void array_free_contents(Array *arr);
 
 void array_clear(Array *arr);
 
+void array_append(Array *arr, int v);
+
+void array_insert(Array *arr, size_t index, int v);
+
 void array_display(Array *arr);
