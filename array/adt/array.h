@@ -20,3 +20,9 @@ Array *array_new(size_t size);
  * @returns Array*|NULL
  */
 Array *array_init(Array *array, size_t size);
+
+void array_delete(Array *array);
+
+Array *array_free_contents(Array *array);
+
+void array_display(Array *array);
