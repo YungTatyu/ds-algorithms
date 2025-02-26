@@ -31,4 +31,6 @@ void array_append(Array *arr, int v);
 
 void array_insert(Array *arr, size_t index, int v);
 
+int array_delete_ele(Array *arr, size_t index);
+
 void array_display(Array *arr);

@@ -65,6 +65,18 @@ void array_insert(Array *arr, size_t index, int v) {
   ++(arr->length);
 }
 
+int array_delete_ele(Array *arr, size_t index) {
+  if (index >= arr->length) {
+    return 0;
+  }
+  int re = arr->a[index];
+  --(arr->length);
+  memmove(&arr->a[index], &arr->a[index + 1],
+          (arr->length - index) * sizeof(int));
+  arr->a[arr->length] = 0;
+  return re;
+}
+
 void array_display(Array *arr) {
   for (size_t i = 0; i < arr->length; ++i) {
     printf("%d, ", arr->a[i]);

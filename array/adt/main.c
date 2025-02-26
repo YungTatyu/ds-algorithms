@@ -11,5 +11,14 @@ int main(int argc, char *argv[]) {
   array_display(arr);
   array_insert(arr, 9, 1);
   array_display(arr);
+
+  array_delete_ele(arr, 2);
+  array_display(arr);
+  array_delete_ele(arr, 0);
+  array_display(arr);
+  array_delete_ele(arr, arr->length - 1);
+  array_display(arr);
+  array_delete_ele(arr, arr->length);
+  array_display(arr);
   return 0;
 }
