@@ -52,7 +52,7 @@ void array_insert(Array *arr, size_t index, int v) {
   }
   if (index > arr->length) {
     arr->a[index] = v;
-    ++(arr->length);
+    arr->length = index + 1;
     return;
   }
   // optimize using memmove
