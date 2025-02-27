@@ -22,18 +22,16 @@ int main(int argc, char *argv[]) {
   // array_delete_ele(arr, arr->length);
   // array_display(arr);
 
-  Array *sorted_arr = array_new(5);
+  Array *sorted_arr = array_new(15);
   array_append(sorted_arr, 24);
-  array_append(sorted_arr, 1);
-  array_append(sorted_arr, 2);
+  array_append(sorted_arr, -1);
+  array_append(sorted_arr, -2);
   array_append(sorted_arr, 3);
   array_append(sorted_arr, 5);
-  array_append(sorted_arr, 7);
+  array_append(sorted_arr, -7);
   array_append(sorted_arr, 10);
   array_display(sorted_arr);
-  array_right_rotate(sorted_arr);
-  array_display(sorted_arr);
-  array_right_shift(sorted_arr);
+  array_rearrenge(sorted_arr);
   array_display(sorted_arr);
 
   // array_set(sorted_arr, 0, 24);

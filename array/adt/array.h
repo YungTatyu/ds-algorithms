@@ -56,6 +56,12 @@ void array_right_shift(Array *arr);
 
 void array_right_rotate(Array *arr);
 
+void array_insert_sort(Array *arr, int v);
+
+int array_is_sorted(const Array *arr);
+
+void array_rearrenge(Array *arr);
+
 ssize_t array_linear_search(const Array *arr, int key);
 
 ssize_t array_binary_search(const Array *arr, int key);

@@ -189,6 +189,45 @@ void array_right_rotate(Array *arr) {
   arr->a[0] = last;
 }
 
+void array_insert_sort(Array *arr, int v) {
+  if (arr->length == arr->size) {
+    return;
+  }
+  ssize_t i = arr->length - 1;
+  while (i >= 0 && arr->a[i] > v) {
+    arr->a[i + 1] = arr->a[i];
+    --i;
+  }
+  arr->a[i + 1] = v;
+  ++(arr->length);
+}
+
+int array_is_sorted(const Array *arr) {
+  if (arr->length == 0) {
+    return 1;
+  }
+  for (size_t i = 0; i < arr->length - 1; ++i) {
+    if (arr->a[i] > arr->a[i + 1]) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+void array_rearrenge(Array *arr) {
+  size_t left_i = 0, right_i = arr->length - 1;
+  while (1) {
+    while (arr->a[left_i] < 0)
+      ++left_i;
+    while (arr->a[right_i] >= 0)
+      --right_i;
+    if (left_i > right_i) {
+      return;
+    }
+    swap(&arr->a[left_i], &arr->a[right_i]);
+  }
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 
