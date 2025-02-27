@@ -52,6 +52,10 @@ void array_left_shift(Array *arr);
 
 void array_left_rotate(Array *arr);
 
+void array_right_shift(Array *arr);
+
+void array_right_rotate(Array *arr);
+
 ssize_t array_linear_search(const Array *arr, int key);
 
 ssize_t array_binary_search(const Array *arr, int key);

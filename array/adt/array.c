@@ -167,6 +167,28 @@ void array_left_rotate(Array *arr) {
   arr->a[arr->length - 1] = v;
 }
 
+void array_right_shift(Array *arr) {
+  if (arr->length == 0) {
+    return;
+  }
+  int is_max_length = arr->length == arr->size;
+  memmove(&arr->a[1], &arr->a[0],
+          (is_max_length ? arr->length - 1 : arr->length) * sizeof(int));
+  if (!is_max_length) {
+    ++(arr->length);
+  }
+  arr->a[0] = 0;
+}
+
+void array_right_rotate(Array *arr) {
+  if (arr->length == 0 || arr->length == 1) {
+    return;
+  }
+  int v = arr->a[arr->length - 1];
+  memmove(&arr->a[1], &arr->a[0], (arr->length - 1) * sizeof(int));
+  arr->a[0] = v;
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 

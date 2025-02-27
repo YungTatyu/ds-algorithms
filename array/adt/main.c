@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   // array_delete_ele(arr, arr->length);
   // array_display(arr);
 
-  Array *sorted_arr = array_new(7);
+  Array *sorted_arr = array_new(5);
   array_append(sorted_arr, 24);
   array_append(sorted_arr, 1);
   array_append(sorted_arr, 2);
@@ -31,9 +31,9 @@ int main(int argc, char *argv[]) {
   array_append(sorted_arr, 7);
   array_append(sorted_arr, 10);
   array_display(sorted_arr);
-  // array_left_rotate(sorted_arr);
+  array_right_rotate(sorted_arr);
   array_display(sorted_arr);
-  array_left_shift(sorted_arr);
+  array_right_shift(sorted_arr);
   array_display(sorted_arr);
 
   // array_set(sorted_arr, 0, 24);
