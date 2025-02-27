@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-  // Array *arr = array_new(10);
-  // array_append(arr, 2);
-  // array_append(arr, 4);
-  // array_append(arr, 4);
-  // array_append(arr, 2);
+  Array *arr1 = array_new(10);
+  array_append(arr1, 2);
+  array_append(arr1, 4);
+  array_append(arr1, 10);
+  array_append(arr1, 1000);
   // array_display(arr);
   // array_insert(arr, 0, 0);
   // array_display(arr);
@@ -22,17 +22,16 @@ int main(int argc, char *argv[]) {
   // array_delete_ele(arr, arr->length);
   // array_display(arr);
 
-  Array *sorted_arr = array_new(15);
-  array_append(sorted_arr, 24);
-  array_append(sorted_arr, -1);
-  array_append(sorted_arr, -2);
-  array_append(sorted_arr, 3);
-  array_append(sorted_arr, 5);
-  array_append(sorted_arr, -7);
-  array_append(sorted_arr, 10);
-  array_display(sorted_arr);
-  array_rearrenge(sorted_arr);
-  array_display(sorted_arr);
+  Array *arr2 = array_new(15);
+  array_append(arr2, -7);
+  array_append(arr2, -2);
+  array_append(arr2, -1);
+  array_append(arr2, 3);
+  array_append(arr2, 5);
+  array_append(arr2, 10);
+
+  Array *arr = array_merge(arr1, arr2);
+  array_display(arr);
 
   // array_set(sorted_arr, 0, 24);
   // array_display(sorted_arr);

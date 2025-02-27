@@ -62,6 +62,8 @@ int array_is_sorted(const Array *arr);
 
 void array_rearrenge(Array *arr);
 
+Array *array_merge(const Array *arr1, const Array *arr2);
+
 ssize_t array_linear_search(const Array *arr, int key);
 
 ssize_t array_binary_search(const Array *arr, int key);

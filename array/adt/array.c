@@ -228,6 +228,26 @@ void array_rearrenge(Array *arr) {
   }
 }
 
+Array *array_merge(const Array *arr1, const Array *arr2) {
+  Array *new_arr = array_new(arr1->length + arr2->length);
+  size_t a1i, a2i, i;
+  a1i = a2i = i = 0;
+  while (a1i < arr1->length && a2i < arr2->length) {
+    if (arr1->a[a1i] < arr2->a[a2i]) {
+      new_arr->a[i] = arr1->a[a1i];
+      ++a1i;
+    } else {
+      new_arr->a[i] = arr2->a[a2i];
+      ++a2i;
+    }
+    ++i;
+  }
+  memcpy(&new_arr->a[i], &arr1->a[a1i], (arr1->length - a1i) * sizeof(int));
+  memcpy(&new_arr->a[i], &arr2->a[a2i], (arr2->length - a2i) * sizeof(int));
+  new_arr->length = arr1->length + arr2->length;
+  return new_arr;
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 
