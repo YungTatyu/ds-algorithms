@@ -1,4 +1,5 @@
 #include "array.h"
+#include <limits.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,6 +77,55 @@ int array_delete_ele(Array *arr, size_t index) {
           (arr->length - index) * sizeof(int));
   arr->a[arr->length] = 0;
   return re;
+}
+
+int array_get(const Array *arr, size_t index) {
+  if (index >= arr->length) {
+    return -1;
+  }
+  return arr->a[index];
+}
+
+void array_set(Array *arr, size_t index, int v) {
+  if (index >= arr->size) {
+    return;
+  }
+  arr->a[index] = v;
+  if (index >= arr->length) {
+    arr->length = index + 1;
+  }
+}
+
+int array_max(const Array *arr) {
+  int max = arr->a[0];
+  for (size_t i = 1; i < arr->length; ++i) {
+    if (arr->a[i] > max) {
+      max = arr->a[i];
+    }
+  }
+  return max;
+}
+
+int array_min(const Array *arr) {
+  int min = arr->a[0];
+  for (size_t i = 1; i < arr->length; ++i) {
+    if (arr->a[i] < min) {
+      min = arr->a[i];
+    }
+  }
+  return min;
+}
+
+int array_sum(const Array *arr) {
+  int sum = 0;
+  for (size_t i = 0; i < arr->length; ++i) {
+    sum += arr->a[i];
+  }
+  return sum;
+}
+
+float array_avg(const Array *arr) {
+  return (float)array_sum(arr) / (float)arr->length;
 }
 
 ssize_t array_linear_search(const Array *arr, int key) {

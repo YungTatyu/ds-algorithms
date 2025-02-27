@@ -32,20 +32,12 @@ int main(int argc, char *argv[]) {
   array_append(sorted_arr, 10);
   array_display(sorted_arr);
 
-  printf("%zd", array_binary_search(sorted_arr, 2));
-  printf("%zd", array_binary_search(sorted_arr, 0));
-  printf("%zd", array_binary_search(sorted_arr, 10));
-  printf("%zd", array_binary_search(sorted_arr, -2));
-  printf("%zd", array_binary_search(sorted_arr, 12));
-  printf("%zd",
-         array_rec_binary_search(sorted_arr, 0, sorted_arr->length - 1, 2));
-  printf("%zd",
-         array_rec_binary_search(sorted_arr, 0, sorted_arr->length - 1, 0));
-  printf("%zd",
-         array_rec_binary_search(sorted_arr, 0, sorted_arr->length - 1, 10));
-  printf("%zd",
-         array_rec_binary_search(sorted_arr, 0, sorted_arr->length - 1, -2));
-  printf("%zd",
-         array_rec_binary_search(sorted_arr, 0, sorted_arr->length - 1, 12));
+  array_set(sorted_arr, 0, 24);
+  array_display(sorted_arr);
+  array_set(sorted_arr, 9, 24);
+  array_display(sorted_arr);
+  printf("%d\n", array_get(sorted_arr, 0));
+  printf("%d\n", array_sum(sorted_arr));
+
   return 0;
 }
