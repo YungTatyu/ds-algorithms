@@ -162,9 +162,9 @@ void array_left_rotate(Array *arr) {
   if (arr->length == 0 || arr->length == 1) {
     return;
   }
-  int v = arr->a[0];
+  int first = arr->a[0];
   memmove(&arr->a[0], &arr->a[1], (arr->length - 1) * sizeof(int));
-  arr->a[arr->length - 1] = v;
+  arr->a[arr->length - 1] = first;
 }
 
 void array_right_shift(Array *arr) {
@@ -184,9 +184,9 @@ void array_right_rotate(Array *arr) {
   if (arr->length == 0 || arr->length == 1) {
     return;
   }
-  int v = arr->a[arr->length - 1];
+  int last = arr->a[arr->length - 1];
   memmove(&arr->a[1], &arr->a[0], (arr->length - 1) * sizeof(int));
-  arr->a[0] = v;
+  arr->a[0] = last;
 }
 
 ssize_t array_binary_search(const Array *arr, int key) {
