@@ -149,6 +149,24 @@ void array_reverse(Array *arr) {
   }
 }
 
+void array_left_shift(Array *arr) {
+  if (arr->length == 0) {
+    return;
+  }
+  memmove(&arr->a[0], &arr->a[1], (arr->length - 1) * sizeof(int));
+  --(arr->length);
+  arr->a[arr->length] = 0;
+}
+
+void array_left_rotate(Array *arr) {
+  if (arr->length == 0 || arr->length == 1) {
+    return;
+  }
+  int v = arr->a[0];
+  memmove(&arr->a[0], &arr->a[1], (arr->length - 1) * sizeof(int));
+  arr->a[arr->length - 1] = v;
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 

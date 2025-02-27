@@ -22,29 +22,26 @@ int main(int argc, char *argv[]) {
   // array_delete_ele(arr, arr->length);
   // array_display(arr);
 
-  Array *sorted_arr = array_new(10);
-  array_reverse(sorted_arr);
-  array_append(sorted_arr, 0);
-  array_reverse(sorted_arr);
-  array_display(sorted_arr);
+  Array *sorted_arr = array_new(7);
+  array_append(sorted_arr, 24);
   array_append(sorted_arr, 1);
-  array_reverse(sorted_arr);
-  array_display(sorted_arr);
   array_append(sorted_arr, 2);
   array_append(sorted_arr, 3);
   array_append(sorted_arr, 5);
   array_append(sorted_arr, 7);
   array_append(sorted_arr, 10);
   array_display(sorted_arr);
-  array_reverse(sorted_arr);
+  // array_left_rotate(sorted_arr);
+  array_display(sorted_arr);
+  array_left_shift(sorted_arr);
   array_display(sorted_arr);
 
-  array_set(sorted_arr, 0, 24);
-  array_display(sorted_arr);
-  array_set(sorted_arr, 9, 24);
-  array_display(sorted_arr);
-  printf("%d\n", array_get(sorted_arr, 0));
-  printf("%d\n", array_sum(sorted_arr));
+  // array_set(sorted_arr, 0, 24);
+  // array_display(sorted_arr);
+  // array_set(sorted_arr, 9, 24);
+  // array_display(sorted_arr);
+  // printf("%d\n", array_get(sorted_arr, 0));
+  // printf("%d\n", array_sum(sorted_arr));
 
   return 0;
 }
