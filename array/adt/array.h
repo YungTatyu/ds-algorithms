@@ -34,6 +34,8 @@ void array_insert(Array *arr, size_t index, int v);
 
 int array_delete_ele(Array *arr, size_t index);
 
+ssize_t array_linear_search(const Array *arr, int key);
+
 ssize_t array_binary_search(const Array *arr, int key);
 
 ssize_t array_rec_binary_search(const Array *arr, ssize_t low, ssize_t high,

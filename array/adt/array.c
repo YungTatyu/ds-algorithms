@@ -78,6 +78,15 @@ int array_delete_ele(Array *arr, size_t index) {
   return re;
 }
 
+ssize_t array_linear_search(const Array *arr, int key) {
+  for (size_t i = 0; i < arr->length; ++i) {
+    if (arr->a[i] == key) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 
