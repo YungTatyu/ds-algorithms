@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 struct Array {
   int *a;
@@ -32,5 +33,10 @@ void array_append(Array *arr, int v);
 void array_insert(Array *arr, size_t index, int v);
 
 int array_delete_ele(Array *arr, size_t index);
+
+ssize_t array_binary_search(const Array *arr, int key);
+
+ssize_t array_rec_binary_search(const Array *arr, ssize_t low, ssize_t high,
+                                int key);
 
 void array_display(Array *arr);

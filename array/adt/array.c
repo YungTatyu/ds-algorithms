@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 
 Array *array_new(size_t size) {
   Array *ptr = (Array *)calloc(1, sizeof(Array));
@@ -77,6 +78,38 @@ int array_delete_ele(Array *arr, size_t index) {
   return re;
 }
 
+ssize_t array_binary_search(const Array *arr, int key) {
+  ssize_t l = 0, h = arr->length - 1;
+
+  while (l <= h) {
+    ssize_t m = (l + h) / 2;
+    if (arr->a[m] == key) {
+      return m;
+    }
+    if (arr->a[m] > key) {
+      h = m - 1;
+    } else {
+      l = m + 1;
+    }
+  }
+  return -1;
+}
+
+ssize_t array_rec_binary_search(const Array *arr, ssize_t low, ssize_t high,
+                                int key) {
+  if (low > high) {
+    return -1;
+  }
+  ssize_t m = (low + high) / 2;
+  if (arr->a[m] == key) {
+    return m;
+  }
+  if (arr->a[m] > key) {
+    return array_rec_binary_search(arr, low, m - 1, key);
+  } else {
+    return array_rec_binary_search(arr, m + 1, high, key);
+  }
+}
 void array_display(Array *arr) {
   for (size_t i = 0; i < arr->length; ++i) {
     printf("%d, ", arr->a[i]);
