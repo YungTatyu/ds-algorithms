@@ -137,6 +137,18 @@ ssize_t array_linear_search(const Array *arr, int key) {
   return -1;
 }
 
+static inline void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+void array_reverse(Array *arr) {
+  for (ssize_t min = 0, max = arr->length - 1; min < max; ++min, --max) {
+    swap(&arr->a[min], &arr->a[max]);
+  }
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 

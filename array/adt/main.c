@@ -23,13 +23,20 @@ int main(int argc, char *argv[]) {
   // array_display(arr);
 
   Array *sorted_arr = array_new(10);
+  array_reverse(sorted_arr);
   array_append(sorted_arr, 0);
+  array_reverse(sorted_arr);
+  array_display(sorted_arr);
   array_append(sorted_arr, 1);
+  array_reverse(sorted_arr);
+  array_display(sorted_arr);
   array_append(sorted_arr, 2);
   array_append(sorted_arr, 3);
   array_append(sorted_arr, 5);
   array_append(sorted_arr, 7);
   array_append(sorted_arr, 10);
+  array_display(sorted_arr);
+  array_reverse(sorted_arr);
   array_display(sorted_arr);
 
   array_set(sorted_arr, 0, 24);

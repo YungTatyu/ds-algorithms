@@ -46,6 +46,8 @@ int array_sum(const Array *arr);
 
 float array_avg(const Array *arr);
 
+void array_reverse(Array *arr);
+
 ssize_t array_linear_search(const Array *arr, int key);
 
 ssize_t array_binary_search(const Array *arr, int key);
