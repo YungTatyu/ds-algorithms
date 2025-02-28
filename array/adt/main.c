@@ -3,10 +3,11 @@
 
 int main(int argc, char *argv[]) {
   Array *arr1 = array_new(10);
+  array_append(arr1, 1);
   array_append(arr1, 2);
   array_append(arr1, 4);
-  // array_append(arr1, 10);
-  // array_append(arr1, 1000);
+  array_append(arr1, 10);
+  array_append(arr1, 1000);
   // array_display(arr);
   // array_insert(arr, 0, 0);
   // array_display(arr);
@@ -31,7 +32,7 @@ int main(int argc, char *argv[]) {
   array_append(arr2, 5);
   array_append(arr2, 10);
 
-  Array *arr = array_union(arr1, arr2);
+  Array *arr = array_intersection(arr1, arr2);
   array_display(arr);
 
   // array_set(sorted_arr, 0, 24);

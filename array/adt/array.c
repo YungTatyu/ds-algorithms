@@ -276,6 +276,29 @@ Array *array_union(const Array *arr1, const Array *arr2) {
   return new_arr;
 }
 
+/**
+ * copy values which are duplicates in arr1 and arr2
+ */
+Array *array_intersection(const Array *arr1, const Array *arr2) {
+  Array *new_arr = array_new(arr1->length + arr2->length);
+  size_t a1i, a2i, i;
+  a1i = a2i = i = 0;
+  while (a1i < arr1->length && a2i < arr2->length) {
+    if (arr1->a[a1i] < arr2->a[a2i]) {
+      ++a1i;
+    } else if (arr1->a[a1i] > arr2->a[a2i]) {
+      ++a2i;
+    } else {
+      new_arr->a[i] = arr1->a[a1i];
+      ++a1i;
+      ++a2i;
+      ++i;
+    }
+  }
+  new_arr->length = i;
+  return new_arr;
+}
+
 ssize_t array_binary_search(const Array *arr, int key) {
   ssize_t l = 0, h = arr->length - 1;
 
