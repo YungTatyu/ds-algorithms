@@ -64,6 +64,8 @@ void array_rearrenge(Array *arr);
 
 Array *array_merge(const Array *arr1, const Array *arr2);
 
+Array *array_union(const Array *arr1, const Array *arr2);
+
 ssize_t array_linear_search(const Array *arr, int key);
 
 ssize_t array_binary_search(const Array *arr, int key);
