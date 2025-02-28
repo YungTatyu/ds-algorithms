@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
   array_append(arr2, 5);
   array_append(arr2, 10);
 
-  Array *arr = array_intersection(arr1, arr2);
+  Array *arr = array_diffrence(arr1, arr2);
   array_display(arr);
 
   // array_set(sorted_arr, 0, 24);
