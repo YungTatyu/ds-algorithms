@@ -28,7 +28,8 @@ void find_missing_elements(const int *arr, int n) {
 
 void find_missing_elements_using_hashtable(const unsigned int *arr, int n) {
   size_t i = 0;
-  unsigned int *h = calloc(arr[n - 1], sizeof(unsigned int));
+  size_t h_size = arr[n - 1] + 1;
+  unsigned int *h = calloc(h_size, sizeof(unsigned int));
   if (h == NULL) {
     return;
   }
@@ -36,7 +37,7 @@ void find_missing_elements_using_hashtable(const unsigned int *arr, int n) {
     ++h[arr[i]];
   }
   int start = 0;
-  for (size_t i = 0; i < arr[n - 1]; ++i) {
+  for (size_t i = 0; i < h_size; ++i) {
     if (!start && h[i] >= 1) {
       start = 1;
     }
