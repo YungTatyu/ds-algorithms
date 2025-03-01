@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,11 +57,39 @@ void find_duplicate_elements_unsorted_array(const int *arr, size_t size) {
   free(checked);
 }
 
+int max(const unsigned int *arr, size_t size) {
+  unsigned int max = 0;
+  for (size_t i = 0; i < size; ++i) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+void find_duplicate_elements_unsorted_array_using_hashtable(
+    const unsigned int *arr, size_t size) {
+  size_t h_size = max(arr, size) + 1;
+  unsigned int *h = (unsigned int *)calloc(h_size, sizeof(unsigned int));
+  if (h == NULL) {
+    return;
+  }
+  for (size_t i = 0; i < size; ++i) {
+    ++h[arr[i]];
+  }
+  for (size_t i = 0; i < h_size; ++i) {
+    if (h[i] > 1) {
+      printf("duplicate: %zu, count: %d\n", i, h[i]);
+    }
+  }
+  free(h);
+}
+
 int main(int argc, char *argv[]) {
 
-  int arr[] = {6, 6, 62, 3, 3, 1, 4, 5, 1, 1};
+  unsigned int arr[] = {4, 6, 6, 62, 3, 3, 1, 4, 5, 1, 1};
 
-  find_duplicate_elements_unsorted_array(arr,
-                                         sizeof(arr) / sizeof(unsigned int));
+  find_duplicate_elements_unsorted_array_using_hashtable(
+      arr, sizeof(arr) / sizeof(unsigned int));
   return 0;
 }
