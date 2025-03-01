@@ -32,11 +32,35 @@ void find_duplicate_elements_using_hashtable(const unsigned int *arr,
     }
   }
 }
+
+void find_duplicate_elements_unsorted_array(const int *arr, size_t size) {
+  char *checked = (char *)calloc(size, sizeof(char));
+  if (checked == NULL) {
+    return;
+  }
+  for (size_t i = 0; i < size; ++i) {
+    int count = 1;
+    if (checked[i] == (char)1) {
+      continue;
+    }
+    for (size_t di = i + 1; di < size; ++di) {
+      if (arr[i] == arr[di]) {
+        ++count;
+        checked[di] = (char)1;
+      }
+    }
+    if (count > 1) {
+      printf("duplicate: %d, count: %d\n", arr[i], count);
+    }
+  }
+  free(checked);
+}
+
 int main(int argc, char *argv[]) {
 
-  unsigned int arr[] = {1, 2, 3, 3, 4, 5, 6, 6, 6};
+  int arr[] = {6, 6, 62, 3, 3, 1, 4, 5, 1, 1};
 
-  find_duplicate_elements_using_hashtable(arr,
-                                          sizeof(arr) / sizeof(unsigned int));
+  find_duplicate_elements_unsorted_array(arr,
+                                         sizeof(arr) / sizeof(unsigned int));
   return 0;
 }
