@@ -42,10 +42,22 @@ void find_pair_with_sum_sorted_array(const int *arr, size_t size, int sum) {
     }
   }
 }
+void find_max_min(const int *arr, size_t size) {
+  int min, max;
+  min = max = arr[0];
+  for (size_t i = 1; i < size; ++i) {
+    if (arr[i] < min) {
+      min = arr[i];
+    } else {
+      max = arr[i];
+    }
+  }
+  printf("min: %d  max: %d\n", min, max);
+}
 
 int main(int argc, char *argv[]) {
 
-  int arr[] = {1, 3, 4, 5, 6, 7, 8, 9, 10, 14};
-  find_pair_with_sum_sorted_array(arr, sizeof(arr) / sizeof(int), 12);
+  int arr[] = {1, 3, 4, 5, 6, -7, 7, 8, 9, 10, 14};
+  find_max_min(arr, sizeof(arr) / sizeof(int));
   return 0;
 }
