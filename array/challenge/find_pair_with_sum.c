@@ -28,9 +28,24 @@ void find_pair_with_sum(const unsigned int *arr, size_t size,
   free(h);
 }
 
+void find_pair_with_sum_sorted_array(const int *arr, size_t size, int sum) {
+  size_t li = 0, ri = size - 1;
+  while (li < ri) {
+    if (arr[li] + arr[ri] == sum) {
+      printf("%d + %d = %d\n", arr[li], arr[ri], sum);
+      ++li;
+      --ri;
+    } else if (arr[li] + arr[ri] > sum) {
+      --ri;
+    } else {
+      ++li;
+    }
+  }
+}
+
 int main(int argc, char *argv[]) {
 
-  unsigned int arr[] = {1, 3, 7, 8, 9, 10, 0, 2};
-  find_pair_with_sum(arr, sizeof(arr) / sizeof(unsigned int), 10);
+  int arr[] = {1, 3, 4, 5, 6, 7, 8, 9, 10, 14};
+  find_pair_with_sum_sorted_array(arr, sizeof(arr) / sizeof(int), 12);
   return 0;
 }
