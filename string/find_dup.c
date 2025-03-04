@@ -21,9 +21,25 @@ void find_dup_using_hashtable(const char *str) {
   free(h);
 }
 
-int main(int argc, char *argv[]) {
+void find_dup_using_bits(const char *str) {
+  long h = 0;
+  for (size_t i = 0; str[i] != '\0'; ++i) {
+    if (!isalpha(str[i])) {
+      continue;
+    }
+    long bit_shifts = islower(str[i]) ? str[i] - 'a' + 'z' + 1 : str[i] - 'A';
+    if (h & 1 << bit_shifts) {
+      printf("duplicate value: %c\n", str[i]);
+    }
+    h |= 1 << bit_shifts;
+  }
+}
 
-  find_dup_using_hashtable("this is testzZZ");
+int main(int argc, char *argv[]) {
+  const char *str = "this is testzZZ    WTFFwtffff";
+
+  find_dup_using_hashtable(str);
+  find_dup_using_bits(str);
 
   return 0;
 }
