@@ -19,8 +19,8 @@ int check_anagram_usgin_hashtable(const char *s1, const char *s2) {
   return re;
 }
 /**
- * are these strings consist of same letters of elements aks anagram?
- * check only alpha and num elements
+ * are these strings consist of same letters of elements aka anagram?
+ * check only alpha elements
  * WARN: only use this when strings have no duplicates
  */
 int check_anagram_usgin_bits(const char *s1, const char *s2) {
