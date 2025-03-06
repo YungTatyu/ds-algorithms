@@ -30,7 +30,7 @@ void permutations_modifying_s(char *s, size_t low, size_t high) {
     printf("%s\n", s);
     return;
   }
-  for (size_t i = low; s[i] != '\0'; ++i) {
+  for (size_t i = low; i <= high; ++i) {
     swap(&s[i], &s[low]);
     permutations_modifying_s(s, low + 1, high);
     swap(&s[i], &s[low]);
