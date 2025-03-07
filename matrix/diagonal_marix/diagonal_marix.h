@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 struct DiagonalMatrix {
-  int arr[10];
+  int *arr;
   size_t size;
 };
 
@@ -22,6 +22,8 @@ struct DiagonalMatrix {
 // are stored to save memory.
 // --------------------------------------------
 typedef struct DiagonalMatrix DiagonalMatrix;
+
+DiagonalMatrix *diagonal_marix_new(size_t size);
 
 void diagonal_marix_set(DiagonalMatrix *m, size_t fi, size_t si, int v);
 

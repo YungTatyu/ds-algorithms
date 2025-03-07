@@ -1,6 +1,21 @@
 #include "diagonal_marix.h"
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+DiagonalMatrix *diagonal_marix_new(size_t size) {
+  DiagonalMatrix *m = (DiagonalMatrix *)calloc(1, sizeof(DiagonalMatrix));
+  if (m == NULL) {
+    return NULL;
+  }
+  m->arr = (int *)calloc(size, sizeof(int));
+  if (m->arr == NULL) {
+    free(m);
+    return NULL;
+  }
+  m->size = size;
+  return m;
+}
 
 void diagonal_marix_set(DiagonalMatrix *m, size_t fi, size_t si, int v) {
   if (fi == 0 || fi != si) {
