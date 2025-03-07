@@ -10,7 +10,7 @@ LowerTriangularMatrix *lower_triangular_matrix_new(size_t size) {
   if (m == NULL) {
     return NULL;
   }
-  m->arr = (int *)calloc(size, sizeof(int));
+  m->arr = (int *)calloc(size * (size + 1) / 2, sizeof(int));
   if (m->arr == NULL) {
     free(m);
     return NULL;
@@ -21,7 +21,7 @@ LowerTriangularMatrix *lower_triangular_matrix_new(size_t size) {
 
 void lower_triangular_matrix_set(LowerTriangularMatrix *m, size_t fi, size_t si,
                                  int v) {
-  if (fi == 0 || si == 0 || si < fi) {
+  if (fi == 0 || si == 0 || fi < si) {
     return;
   }
   size_t index = lower_triangular_matrix_cal_index(fi, si);
@@ -30,7 +30,7 @@ void lower_triangular_matrix_set(LowerTriangularMatrix *m, size_t fi, size_t si,
 
 int lower_triangular_matrix_get(const LowerTriangularMatrix *m, size_t fi,
                                 size_t si) {
-  if (fi == 0 || si == 0 || si < fi) {
+  if (fi == 0 || si == 0 || fi < si) {
     return 0;
   }
   size_t index = lower_triangular_matrix_cal_index(fi, si);
@@ -38,8 +38,8 @@ int lower_triangular_matrix_get(const LowerTriangularMatrix *m, size_t fi,
 }
 
 void lower_triangular_matrix_display(const LowerTriangularMatrix *m) {
-  for (size_t fi = 0; fi < m->size; ++fi) {
-    for (size_t si = 0; si < m->size; ++si) {
+  for (size_t fi = 1; fi <= m->size; ++fi) {
+    for (size_t si = 1; si <= m->size; ++si) {
       if (fi >= si) {
         printf("%d ", m->arr[lower_triangular_matrix_cal_index(fi, si)]);
       } else {
