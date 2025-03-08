@@ -7,6 +7,18 @@ struct LowerTriangularMatrix {
   size_t size;
 };
 
+/**
+ * @brief Structure representing a lower triangular matrix.
+ *
+ * A lower triangular matrix is a square matrix in which all elements above the
+ * main diagonal are zero. For example, a 4x4 lower triangular matrix is
+ * represented as:
+ *
+ * [ a₁₁  0    0    0  ]
+ * [ a₂₁ a₂₂  0    0  ]
+ * [ a₃₁ a₃₂ a₃₃  0  ]
+ * [ a₄₁ a₄₂ a₄₃ a₄₄ ]
+ */
 typedef struct LowerTriangularMatrix LowerTriangularMatrix;
 
 LowerTriangularMatrix *lower_triangular_matrix_new(size_t size);
