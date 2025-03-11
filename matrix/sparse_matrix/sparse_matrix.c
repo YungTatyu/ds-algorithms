@@ -32,7 +32,8 @@ void sparse_display(const SparseMatrix *m) {
   size_t ele_index = 0;
   for (size_t ri = 0; ri < m->row_num; ++ri) {
     for (size_t ci = 0; ci < m->col_num; ++ci) {
-      if (m->ele[ele_index].ri == ri && m->ele[ele_index].ci == ci) {
+      if (ele_index < m->size && m->ele[ele_index].ri == ri &&
+          m->ele[ele_index].ci == ci) {
         printf("%d ", m->ele[ele_index].value);
         ++ele_index;
       } else {
@@ -54,7 +55,6 @@ SparseMatrix *sparse_add(const SparseMatrix *m1, const SparseMatrix *m2) {
   sum->row_num = m1->row_num;
   sum->col_num = m1->col_num;
   sum->ele = calloc(m1->size + m2->size, sizeof(SparseElement));
-  sum->size = m1->size + m2->size;
   if (sum->ele == NULL) {
     free(sum);
     return NULL;
@@ -96,6 +96,6 @@ SparseMatrix *sparse_add(const SparseMatrix *m1, const SparseMatrix *m2) {
          sizeof(SparseElement) * (m1->size - m1i));
   memcpy(&sum->ele[si], &m2->ele[m2i],
          sizeof(SparseElement) * (m2->size - m2i));
-  sum->size += (m1->size - m1i) + (m2->size - m2i);
+  sum->size += m1->size + (m1->size - m1i) + (m2->size - m2i);
   return sum;
 }
