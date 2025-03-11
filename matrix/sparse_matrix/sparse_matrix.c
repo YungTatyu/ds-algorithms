@@ -62,30 +62,21 @@ SparseMatrix *sparse_add(const SparseMatrix *m1, const SparseMatrix *m2) {
   size_t m1i = 0, m2i = 0, si = 0;
   while (m1i < m1->size && m2i < m2->size) {
     if (m1->ele[m1i].ri < m2->ele[m2i].ri) {
-      sum->ele[si].ri = m1->ele[m1i].ri;
-      sum->ele[si].ci = m1->ele[m1i].ci;
-      sum->ele[si].value = m1->ele[m1i].value;
+      memcpy(&sum->ele[si], &m1->ele[m1i], sizeof(SparseElement));
       ++m1i;
     } else if (m1->ele[m1i].ri > m2->ele[m2i].ri) {
-      sum->ele[si].ri = m2->ele[m2i].ri;
-      sum->ele[si].ci = m2->ele[m2i].ci;
-      sum->ele[si].value = m2->ele[m2i].value;
+      memcpy(&sum->ele[si], &m2->ele[m2i], sizeof(SparseElement));
       ++m2i;
     } else {
       if (m1->ele[m1i].ci < m2->ele[m2i].ci) {
-        sum->ele[si].ri = m1->ele[m1i].ri;
-        sum->ele[si].ci = m1->ele[m1i].ci;
-        sum->ele[si].value = m1->ele[m1i].value;
+        memcpy(&sum->ele[si], &m1->ele[m1i], sizeof(SparseElement));
         ++m1i;
       } else if (m1->ele[m1i].ci > m2->ele[m2i].ci) {
-        sum->ele[si].ri = m2->ele[m2i].ri;
-        sum->ele[si].ci = m2->ele[m2i].ci;
-        sum->ele[si].value = m2->ele[m2i].value;
+        memcpy(&sum->ele[si], &m2->ele[m2i], sizeof(SparseElement));
         ++m2i;
       } else {
-        sum->ele[si].ri = m1->ele[m1i].ri;
-        sum->ele[si].ci = m1->ele[m1i].ci;
-        sum->ele[si].value = m1->ele[m1i].value + m2->ele[m2i].value;
+        memcpy(&sum->ele[si], &m1->ele[m1i], sizeof(SparseElement));
+        sum->ele[si].value += m2->ele[m2i].value;
         ++m1i;
         ++m2i;
       }
