@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 SparseMatrix *sparse_marix_new(size_t row_num, size_t col_num, size_t size) {
   SparseMatrix *m = (SparseMatrix *)calloc(1, sizeof(SparseMatrix));
@@ -10,6 +11,7 @@ SparseMatrix *sparse_marix_new(size_t row_num, size_t col_num, size_t size) {
   }
   m->row_num = row_num;
   m->col_num = col_num;
+  m->size = size;
   m->ele = (SparseElement *)calloc(size, sizeof(SparseElement));
   if (m->ele == NULL) {
     free(m);
@@ -39,4 +41,61 @@ void sparse_display(const SparseMatrix *m) {
     }
     printf("\n");
   }
+}
+
+SparseMatrix *sparse_add(const SparseMatrix *m1, const SparseMatrix *m2) {
+  if (m1->row_num != m2->row_num || m1->col_num != m2->col_num) {
+    return NULL;
+  }
+  SparseMatrix *sum = calloc(1, sizeof(SparseMatrix));
+  if (sum == NULL) {
+    return NULL;
+  }
+  sum->row_num = m1->row_num;
+  sum->col_num = m1->col_num;
+  sum->ele = calloc(m1->size + m2->size, sizeof(SparseElement));
+  sum->size = m1->size + m2->size;
+  if (sum->ele == NULL) {
+    free(sum);
+    return NULL;
+  }
+  size_t m1i = 0, m2i = 0, si = 0;
+  while (m1i < m1->size && m2i < m2->size) {
+    if (m1->ele[m1i].ri < m2->ele[m2i].ri) {
+      sum->ele[si].ri = m1->ele[m1i].ri;
+      sum->ele[si].ci = m1->ele[m1i].ci;
+      sum->ele[si].value = m1->ele[m1i].value;
+      ++m1i;
+    } else if (m1->ele[m1i].ri > m2->ele[m2i].ri) {
+      sum->ele[si].ri = m2->ele[m2i].ri;
+      sum->ele[si].ci = m2->ele[m2i].ci;
+      sum->ele[si].value = m2->ele[m2i].value;
+      ++m2i;
+    } else {
+      if (m1->ele[m1i].ci < m2->ele[m2i].ci) {
+        sum->ele[si].ri = m1->ele[m1i].ri;
+        sum->ele[si].ci = m1->ele[m1i].ci;
+        sum->ele[si].value = m1->ele[m1i].value;
+        ++m1i;
+      } else if (m1->ele[m1i].ci > m2->ele[m2i].ci) {
+        sum->ele[si].ri = m2->ele[m2i].ri;
+        sum->ele[si].ci = m2->ele[m2i].ci;
+        sum->ele[si].value = m2->ele[m2i].value;
+        ++m2i;
+      } else {
+        sum->ele[si].ri = m1->ele[m1i].ri;
+        sum->ele[si].ci = m1->ele[m1i].ci;
+        sum->ele[si].value = m1->ele[m1i].value + m2->ele[m2i].value;
+        ++m1i;
+        ++m2i;
+      }
+    }
+    ++si;
+  }
+  memcpy(&sum->ele[si], &m1->ele[m1i],
+         sizeof(SparseElement) * (m1->size - m1i));
+  memcpy(&sum->ele[si], &m2->ele[m2i],
+         sizeof(SparseElement) * (m2->size - m2i));
+  sum->size += (m1->size - m1i) + (m2->size - m2i);
+  return sum;
 }
