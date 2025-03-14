@@ -87,6 +87,7 @@ SparseMatrix *sparse_add(const SparseMatrix *m1, const SparseMatrix *m2) {
          sizeof(SparseElement) * (m1->size - m1i));
   memcpy(&sum->ele[si], &m2->ele[m2i],
          sizeof(SparseElement) * (m2->size - m2i));
-  sum->size += m1->size + (m1->size - m1i) + (m2->size - m2i);
+  size_t max = m1->size >= m2->size ? m1->size : m2->size;
+  sum->size += max + (m1->size - m1i) + (m2->size - m2i);
   return sum;
 }
