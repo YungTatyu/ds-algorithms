@@ -57,5 +57,9 @@ Poly *poly_add(const Poly *p1, const Poly *p2) {
     }
     ++pi;
   }
+  memcpy(&sum->terms[pi], &p1->terms[p1i], sizeof(Term) * (p1->size - p1i));
+  memcpy(&sum->terms[pi], &p2->terms[p2i], sizeof(Term) * (p2->size - p2i));
+  size_t max = p1i >= p2i ? p1->size : p2->size;
+  sum->size = max + (p1->size - p1i) + (p2->size - p2i);
   return sum;
 }
