@@ -20,3 +20,7 @@ void node_list_delete(Node *head);
 void node_display(const Node *head);
 
 void node_recur_display(const Node *head);
+
+size_t node_size(const Node *head);
+
+size_t node_recur_size(const Node *head);

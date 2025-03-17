@@ -56,3 +56,20 @@ void node_recur_display(const Node *head) {
   printf("%d ", head->v);
   node_recur_display(head->next);
 }
+
+size_t node_size(const Node *head) {
+  const Node *node = head;
+  size_t size = 0;
+  while (node != NULL) {
+    ++size;
+    node = node->next;
+  }
+  return size;
+}
+
+size_t node_recur_size(const Node *head) {
+  if (head == NULL) {
+    return 0;
+  }
+  return node_recur_size(head->next) + 1;
+}
