@@ -12,7 +12,7 @@ Node *node_new(int v) {
   return n;
 }
 
-Node *node_list_new(int *arr, size_t size) {
+Node *node_list_new(const int *arr, size_t size) {
   Node *head = NULL;
   Node *tail;
   for (size_t i = 0; i < size; ++i) {
@@ -41,10 +41,18 @@ void node_list_delete(Node *head) {
   }
 }
 
-void node_display(Node *head) {
-  Node *node = head;
+void node_display(const Node *head) {
+  const Node *node = head;
   while (node != NULL) {
     printf("%d ", node->v);
     node = node->next;
   }
+}
+
+void node_recur_display(const Node *head) {
+  if (head == NULL) {
+    return;
+  }
+  printf("%d ", head->v);
+  node_recur_display(head->next);
 }
