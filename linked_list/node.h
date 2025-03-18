@@ -28,3 +28,7 @@ size_t node_recur_size(const Node *head);
 int node_sum(const Node *head);
 
 int node_recur_sum(const Node *head);
+
+int node_max(const Node *head);
+
+int node_recur_max(const Node *head);

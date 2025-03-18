@@ -1,4 +1,5 @@
 #include "node.h"
+#include <limits.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -88,5 +89,25 @@ int node_recur_sum(const Node *head) {
   if (head == NULL) {
     return 0;
   }
-  return head->v + node_recur_sum(head->next);
+  return node_recur_sum(head->next) + head->v;
+}
+
+int node_max(const Node *head) {
+  int max = INT_MIN;
+  const Node *node = head;
+  while (node != NULL) {
+    if (node->v > max) {
+      max = node->v;
+      node = node->next;
+    }
+  }
+  return max;
+}
+
+int node_recur_max(const Node *head) {
+  if (head == NULL) {
+    return INT_MIN;
+  }
+  int max = node_recur_max(head->next);
+  return head->v > max ? head->v : max;
 }
