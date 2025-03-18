@@ -32,3 +32,9 @@ int node_recur_sum(const Node *head);
 int node_max(const Node *head);
 
 int node_recur_max(const Node *head);
+
+Node *node_search(const Node *head, int key);
+
+Node *node_recur_search(const Node *head, int key);
+
+Node *node_search_with_move_front(Node **head, int key);

@@ -13,6 +13,11 @@ int main(int argc, char *argv[]) {
   printf("sum: %d\n", node_recur_sum(head));
   printf("max: %d\n", node_max(head));
   printf("max: %d\n", node_recur_max(head));
+  printf("search: %x\n", node_search(head, 4));
+  printf("search: %x\n", node_recur_search(head, 6));
+  printf("fast search: %x\n", node_search_with_move_front(&head, 1));
+  printf("fast search: %x\n", node_search_with_move_front(&head, 4));
+  node_recur_display(head);
   node_list_delete(head);
   return 0;
 }

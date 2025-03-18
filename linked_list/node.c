@@ -111,3 +111,44 @@ int node_recur_max(const Node *head) {
   int max = node_recur_max(head->next);
   return head->v > max ? head->v : max;
 }
+
+Node *node_search(const Node *head, int key) {
+  const Node *node = head;
+  while (node != NULL) {
+    if (node->v == key) {
+      return (Node *)node;
+    }
+    node = node->next;
+  }
+  return NULL;
+}
+
+Node *node_recur_search(const Node *head, int key) {
+  if (head == NULL) {
+    return NULL;
+  }
+  if (head->v == key) {
+    return (void *)head;
+  }
+  return node_recur_search(head->next, key);
+}
+
+Node *node_search_with_move_front(Node **head, int key) {
+  Node *node = *head;
+  Node *behind_node = NULL;
+  while (node != NULL) {
+    if (node->v == key) {
+      if (behind_node != NULL) {
+        behind_node->next = node->next;
+      } else if (*head == node) {
+        return node;
+      }
+      node->next = *head;
+      *head = node;
+      return node;
+    }
+    behind_node = node;
+    node = node->next;
+  }
+  return NULL;
+}
