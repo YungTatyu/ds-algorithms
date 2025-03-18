@@ -43,10 +43,9 @@ void node_list_delete(Node *head) {
 }
 
 void node_display(const Node *head) {
-  const Node *node = head;
-  while (node != NULL) {
-    printf("%d ", node->v);
-    node = node->next;
+  while (head != NULL) {
+    printf("%d ", head->v);
+    head = head->next;
   }
 }
 
@@ -59,11 +58,10 @@ void node_recur_display(const Node *head) {
 }
 
 size_t node_size(const Node *head) {
-  const Node *node = head;
   size_t size = 0;
-  while (node != NULL) {
+  while (head != NULL) {
     ++size;
-    node = node->next;
+    head = head->next;
   }
   return size;
 }
@@ -76,11 +74,10 @@ size_t node_recur_size(const Node *head) {
 }
 
 int node_sum(const Node *head) {
-  const Node *node = head;
   int sum = 0;
-  while (node != NULL) {
-    sum += node->v;
-    node = node->next;
+  while (head != NULL) {
+    sum += head->v;
+    head = head->next;
   }
   return sum;
 }
@@ -94,11 +91,10 @@ int node_recur_sum(const Node *head) {
 
 int node_max(const Node *head) {
   int max = INT_MIN;
-  const Node *node = head;
-  while (node != NULL) {
-    if (node->v > max) {
-      max = node->v;
-      node = node->next;
+  while (head != NULL) {
+    if (head->v > max) {
+      max = head->v;
+      head = head->next;
     }
   }
   return max;
@@ -113,12 +109,11 @@ int node_recur_max(const Node *head) {
 }
 
 Node *node_search(const Node *head, int key) {
-  const Node *node = head;
-  while (node != NULL) {
-    if (node->v == key) {
-      return (Node *)node;
+  while (head != NULL) {
+    if (head->v == key) {
+      return (Node *)head;
     }
-    node = node->next;
+    head = head->next;
   }
   return NULL;
 }
