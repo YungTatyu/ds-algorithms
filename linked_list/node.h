@@ -24,3 +24,7 @@ void node_recur_display(const Node *head);
 size_t node_size(const Node *head);
 
 size_t node_recur_size(const Node *head);
+
+int node_sum(const Node *head);
+
+int node_recur_sum(const Node *head);

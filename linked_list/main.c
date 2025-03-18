@@ -9,6 +9,8 @@ int main(int argc, char *argv[]) {
   printf("\n");
   printf("size: %zu\n", node_size(head));
   printf("size: %zu\n", node_recur_size(head));
+  printf("sum: %d\n", node_sum(head));
+  printf("sum: %d\n", node_recur_sum(head));
   node_list_delete(head);
   return 0;
 }

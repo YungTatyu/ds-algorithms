@@ -73,3 +73,20 @@ size_t node_recur_size(const Node *head) {
   }
   return node_recur_size(head->next) + 1;
 }
+
+int node_sum(const Node *head) {
+  const Node *node = head;
+  int sum = 0;
+  while (node != NULL) {
+    sum += node->v;
+    node = node->next;
+  }
+  return sum;
+}
+
+int node_recur_sum(const Node *head) {
+  if (head == NULL) {
+    return 0;
+  }
+  return head->v + node_recur_sum(head->next);
+}
