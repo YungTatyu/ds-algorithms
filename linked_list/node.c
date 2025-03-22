@@ -163,6 +163,29 @@ void node_insert(Node **head, size_t index, Node *new_node) {
   node->next = new_node;
 }
 
+void node_sorted_insert(Node **head, Node *new_node) {
+  if (*head == NULL) {
+    *head = new_node;
+    return;
+  }
+  Node *ahead = *head;
+  Node *behind = NULL;
+  while (ahead != NULL) {
+    if (new_node->v < ahead->v) {
+      break;
+    }
+    behind = ahead;
+    ahead = ahead->next;
+  }
+  if (behind == NULL) {
+    new_node->next = *head;
+    *head = new_node;
+    return;
+  }
+  behind->next = new_node;
+  new_node->next = ahead;
+}
+
 Node *node_index(const Node *head, size_t index) {
   for (size_t i = 0; i < index; ++i) {
     head = head->next;

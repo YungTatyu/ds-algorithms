@@ -6,8 +6,8 @@ int main(int argc, char *argv[]) {
   Node *head = node_list_new(arr, sizeof(arr) / sizeof(int));
   node_display(head);
   printf("\n");
-  node_insert(&head, 0, node_new(24));
-  node_insert(&head, 6, node_new(42));
+  node_sorted_insert(&head, node_new(42));
+  node_sorted_insert(&head, node_new(0));
   node_display(head);
   node_list_delete(head);
   return 0;
