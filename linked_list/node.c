@@ -177,13 +177,13 @@ void node_sorted_insert(Node **head, Node *new_node) {
     behind = ahead;
     ahead = ahead->next;
   }
-  if (behind == NULL) {
+  if (ahead == *head) {
     new_node->next = *head;
     *head = new_node;
     return;
   }
-  behind->next = new_node;
   new_node->next = ahead;
+  behind->next = new_node;
 }
 
 Node *node_index(const Node *head, size_t index) {
