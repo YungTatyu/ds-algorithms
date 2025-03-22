@@ -38,3 +38,7 @@ Node *node_search(const Node *head, int key);
 Node *node_recur_search(const Node *head, int key);
 
 Node *node_search_with_move_front(Node **head, int key);
+
+void node_insert(Node **head, size_t index, Node *new_node);
+
+Node *node_index(const Node *head, size_t index);

@@ -147,3 +147,25 @@ Node *node_search_with_move_front(Node **head, int key) {
   }
   return NULL;
 }
+
+void node_insert(Node **head, size_t index, Node *new_node) {
+  if (new_node == NULL || index > node_size(*head)) {
+    return;
+  }
+  Node *node = *head;
+  if (index == 0) {
+    new_node->next = node;
+    *head = new_node;
+    return;
+  }
+  node = node_index(node, index - 1);
+  new_node->next = node->next;
+  node->next = new_node;
+}
+
+Node *node_index(const Node *head, size_t index) {
+  for (size_t i = 0; i < index; ++i) {
+    head = head->next;
+  }
+  return (Node *)head;
+}
