@@ -212,3 +212,19 @@ int node_delete_from_list(Node **head, size_t index) {
   node_delete(delete);
   return v;
 }
+
+int node_is_sorted(const Node *head) {
+  if (head == NULL) {
+    return 1;
+  }
+  const Node *behind = head;
+  head = head->next;
+  while (head != NULL) {
+    if (head->v < behind->v) {
+      return 0;
+    }
+    behind = head;
+    head = head->next;
+  }
+  return 1;
+}
