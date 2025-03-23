@@ -6,10 +6,11 @@ int main(int argc, char *argv[]) {
   Node *head = node_list_new(arr, sizeof(arr) / sizeof(int));
   // head = NULL;
   node_display(head);
-  printf("\n");
-  node_sorted_insert(&head, node_new(42));
+  node_delete_from_list(&head, 0);
   node_display(head);
-  node_sorted_insert(&head, node_new(0));
+  node_delete_from_list(&head, 3);
+  node_display(head);
+  node_delete_from_list(&head, 3);
   node_display(head);
   node_list_delete(head);
   return 0;

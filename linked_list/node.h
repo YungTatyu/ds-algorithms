@@ -44,3 +44,5 @@ Node *node_index(const Node *head, size_t index);
 void node_insert(Node **head, size_t index, Node *new_node);
 
 void node_sorted_insert(Node **head, Node *new_node);
+
+int node_delete_from_list(Node **head, size_t index);

@@ -47,6 +47,7 @@ void node_display(const Node *head) {
     printf("%d ", head->v);
     head = head->next;
   }
+  printf("\n");
 }
 
 void node_recur_display(const Node *head) {
@@ -191,4 +192,23 @@ Node *node_index(const Node *head, size_t index) {
     head = head->next;
   }
   return (Node *)head;
+}
+
+int node_delete_from_list(Node **head, size_t index) {
+  if (index >= node_size(*head)) {
+    return 0;
+  }
+  if (index == 0) {
+    Node *tmp = *head;
+    int v = tmp->v;
+    *head = tmp->next;
+    node_delete(tmp);
+    return v;
+  }
+  Node *node = node_index(*head, index - 1);
+  Node *delete = node->next;
+  node->next = delete->next;
+  int v = delete->v;
+  node_delete(delete);
+  return v;
 }
