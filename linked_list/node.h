@@ -53,4 +53,6 @@ void node_remove_duplicate(Node *head);
 
 void node_reverse_with_array(Node *head);
 
-void node_reverse(Node *head);
+void node_reverse(Node **head);
+
+void node_recur_reverse(Node **head, Node *ahead, Node *behind);

@@ -264,3 +264,24 @@ void node_reverse_with_array(Node *head) {
   }
   free(arr);
 }
+
+void node_reverse(Node **head) {
+  Node *first = *head;
+  Node *second = NULL, *third = NULL;
+  while (first != NULL) {
+    third = second;
+    second = first;
+    first = first->next;
+    second->next = third;
+  }
+  *head = second;
+}
+
+void node_recur_reverse(Node **head, Node *ahead, Node *behind) {
+  if (ahead == NULL) {
+    *head = behind;
+    return;
+  }
+  node_recur_reverse(head, ahead->next, ahead);
+  ahead->next = behind;
+}
