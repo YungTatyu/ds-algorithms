@@ -228,3 +228,18 @@ int node_is_sorted(const Node *head) {
   }
   return 1;
 }
+
+void node_remove_duplicate(Node *head) {
+  Node *behind = head;
+  head = head->next;
+  while (head != NULL) {
+    if (head->v == behind->v) {
+      behind->next = head->next;
+      node_delete(head);
+      head = behind->next;
+      continue;
+    }
+    behind = head;
+    head = head->next;
+  }
+}
