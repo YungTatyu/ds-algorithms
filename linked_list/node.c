@@ -243,3 +243,24 @@ void node_remove_duplicate(Node *head) {
     head = head->next;
   }
 }
+
+void node_reverse_with_array(Node *head) {
+  size_t size = node_size(head);
+  int *arr = calloc(size, sizeof(int));
+  if (arr == NULL) {
+    return;
+  }
+  Node *node = head;
+  for (size_t i = 0; i < size; i++) {
+    arr[i] = node->v;
+    node = node->next;
+  }
+  node = head;
+  size_t i = size - 1;
+  while (node != NULL) {
+    node->v = arr[i];
+    node = node->next;
+    --i;
+  }
+  free(arr);
+}

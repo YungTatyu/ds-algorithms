@@ -50,3 +50,7 @@ int node_delete_from_list(Node **head, size_t index);
 int node_is_sorted(const Node *head);
 
 void node_remove_duplicate(Node *head);
+
+void node_reverse_with_array(Node *head);
+
+void node_reverse(Node *head);
