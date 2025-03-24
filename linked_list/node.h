@@ -56,3 +56,9 @@ void node_reverse_with_array(Node *head);
 void node_reverse(Node **head);
 
 void node_recur_reverse(Node **head, Node *ahead, Node *behind);
+
+Node *node_last(const Node *head);
+
+void node_concat(Node *head1, Node *head2);
+
+void node_merge(Node *head1, Node *head2);

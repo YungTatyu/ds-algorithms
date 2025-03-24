@@ -285,3 +285,15 @@ void node_recur_reverse(Node **head, Node *ahead, Node *behind) {
   node_recur_reverse(head, ahead->next, ahead);
   ahead->next = behind;
 }
+
+Node *node_last(const Node *head) {
+  while (head->next != NULL) {
+    head = head->next;
+  }
+  return (Node *)head;
+}
+
+void node_concat(Node *head1, Node *head2) {
+  Node *last = node_last(head1);
+  last->next = head2;
+}
