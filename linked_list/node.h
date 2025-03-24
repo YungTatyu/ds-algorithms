@@ -61,4 +61,4 @@ Node *node_last(const Node *head);
 
 void node_concat(Node *head1, Node *head2);
 
-void node_merge(Node *head1, Node *head2);
+Node *node_merge(Node *head1, Node *head2);

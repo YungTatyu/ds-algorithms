@@ -297,3 +297,27 @@ void node_concat(Node *head1, Node *head2) {
   Node *last = node_last(head1);
   last->next = head2;
 }
+
+Node *node_merge(Node *head1, Node *head2) {
+  Node *new_head = NULL;
+  if (head1->v < head2->v) {
+    new_head = head1;
+    head1 = head1->next;
+  } else {
+    new_head = head2;
+    head2 = head2->next;
+  }
+  Node *node = new_head;
+  while (head1 != NULL && head2 != NULL) {
+    if (head1->v < head2->v) {
+      node->next = head1;
+      head1 = head1->next;
+    } else {
+      node->next = head2;
+      head2 = head2->next;
+    }
+    node = node->next;
+  }
+  node->next = head1 == NULL ? head2 : head1;
+  return new_head;
+}
