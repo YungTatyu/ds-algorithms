@@ -112,3 +112,28 @@ size_t cirnode_size(const CirNode *head) {
   } while (node != head);
   return size;
 }
+
+int cirnode_delete_from_list(CirNode **head, size_t index) {
+  if (index >= cirnode_size(*head)) {
+    return 0;
+  }
+  if (index == 0) {
+    CirNode *last = cirnode_last(*head);
+    CirNode *delete = last->next;
+    if (last == delete) {
+      *head = NULL;
+    } else {
+      last->next = delete->next;
+      *head = delete->next;
+    }
+    int v = delete->v;
+    cirnode_delete(delete);
+    return v;
+  }
+  CirNode *node = cirnode_index(*head, index - 1);
+  CirNode *delete = node->next;
+  node->next = delete->next;
+  int v = delete->v;
+  cirnode_delete(delete);
+  return v;
+}

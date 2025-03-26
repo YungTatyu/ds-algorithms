@@ -25,6 +25,8 @@ CirNode *cirnode_index(const CirNode *head, size_t index);
 
 CirNode *cirnode_last(const CirNode *head);
 
+size_t cirnode_size(const CirNode *head);
+
 void cirnode_insert(CirNode **head, CirNode *new_node, size_t index);
 
-size_t cirnode_size(const CirNode *head);
+int cirnode_delete_from_list(CirNode **head, size_t index);
