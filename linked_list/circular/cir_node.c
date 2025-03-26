@@ -1,4 +1,5 @@
 #include "cir_node.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -64,4 +65,50 @@ void cirnode_recur_display(const CirNode *head, const CirNode *node) {
   if (node == head && !is_first) {
     printf("\n");
   }
+}
+
+CirNode *cirnode_index(const CirNode *head, size_t index) {
+  for (size_t i = 0; i < index; ++i) {
+    head = head->next;
+  }
+  return (CirNode *)head;
+}
+
+CirNode *cirnode_last(const CirNode *head) {
+  const CirNode *node = head;
+  while (node != NULL && node->next != head) {
+    node = node->next;
+  }
+  return (CirNode *)node;
+}
+
+void cirnode_insert(CirNode **head, CirNode *new_node, size_t index) {
+  if (index > cirnode_size(*head)) {
+    return;
+  }
+  if (index == 0) {
+    CirNode *last = cirnode_last(*head);
+    if (last) {
+      new_node->next = last->next;
+      last->next = new_node;
+    }
+    *head = new_node;
+    return;
+  }
+  CirNode *node = cirnode_index(*head, index - 1);
+  new_node->next = node->next;
+  node->next = new_node;
+}
+
+size_t cirnode_size(const CirNode *head) {
+  size_t size = 0;
+  if (head == NULL) {
+    return 0;
+  }
+  const CirNode *node = head;
+  do {
+    ++size;
+    node = node->next;
+  } while (node != head);
+  return size;
 }
