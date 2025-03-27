@@ -334,3 +334,17 @@ int node_is_loop(const Node *head) {
   } while (fast != slow);
   return 1;
 }
+
+Node *node_middle(const Node *head) {
+  const Node *fast = head;
+  const Node *slow = head;
+  while (fast != NULL) {
+    fast = fast->next;
+    if (fast == NULL) {
+      break;
+    }
+    fast = fast->next;
+    slow = slow->next;
+  }
+  return (Node *)slow;
+}

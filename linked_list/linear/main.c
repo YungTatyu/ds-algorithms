@@ -9,11 +9,12 @@ int main(int argc, char *argv[]) {
   Node *head2 = node_list_new(arr2, sizeof(arr2) / sizeof(int));
   node_display(head1);
   node_display(head2);
-  printf("%d\n", node_is_loop(head1));
-  node_last(head1)->next = head1;
-  node_last(head2)->next = head2;
-  printf("%d\n", node_is_loop(head1));
-  printf("%d\n", node_is_loop(head2));
+  printf("%d\n", node_middle(head1)->v);
+  // node_display(head1);
+  printf("%d\n", node_middle(head2)->v);
+  // node_display(head2);
+  // node_display(head2);
+  // node_last(head2)->next = head2;
   // node_list_delete(head1);
   // node_list_delete(head2);
   return 0;

@@ -64,3 +64,5 @@ void node_concat(Node *head1, Node *head2);
 Node *node_merge(Node *head1, Node *head2);
 
 int node_is_loop(const Node *head);
+
+Node *node_middle(const Node *head);
