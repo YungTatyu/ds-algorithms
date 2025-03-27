@@ -118,3 +118,16 @@ int doubnode_delete_from_list(DoubNode **head, size_t index) {
   doubnode_delete(delete);
   return v;
 }
+
+void doubnode_reverse(DoubNode **head) {
+  DoubNode *node = *head;
+  while (node != NULL) {
+    DoubNode *next = node->next;
+    node->next = node->prev;
+    node->prev = next;
+    if (next == NULL) {
+      *head = node;
+    }
+    node = next;
+  }
+}
