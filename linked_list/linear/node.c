@@ -340,7 +340,7 @@ Node *node_middle(const Node *head) {
   const Node *slow = head;
   while (fast != NULL) {
     fast = fast->next;
-    if (fast == NULL) {
+    if (fast == NULL || fast->next == NULL) {
       break;
     }
     fast = fast->next;
