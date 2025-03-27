@@ -57,3 +57,38 @@ size_t doubnode_size(const DoubNode *head) {
   }
   return size;
 }
+
+void doubnode_insert(DoubNode **head, DoubNode *new_node, size_t index) {
+  if (index > doubnode_size(*head)) {
+    return;
+  }
+  if (index == 0) {
+    if (*head != NULL) {
+      new_node->next = (*head);
+    }
+    *head = new_node;
+    return;
+  }
+  DoubNode *prev = doubnode_index(*head, index - 1);
+  DoubNode *next = prev->next;
+  new_node->next = next;
+  new_node->prev = prev;
+  prev->next = new_node;
+  if (next != NULL) {
+    next->prev = new_node;
+  }
+}
+
+DoubNode *doubnode_index(const DoubNode *head, size_t index) {
+  for (size_t i = 0; i < index; ++i) {
+    head = head->next;
+  }
+  return (DoubNode *)head;
+}
+
+DoubNode *doubnode_last(const DoubNode *head) {
+  while (head != NULL && head->next != NULL) {
+    head = head->next;
+  }
+  return (DoubNode *)head;
+}
