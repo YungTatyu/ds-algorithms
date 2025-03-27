@@ -92,3 +92,29 @@ DoubNode *doubnode_last(const DoubNode *head) {
   }
   return (DoubNode *)head;
 }
+
+int doubnode_delete_from_list(DoubNode **head, size_t index) {
+  if (index >= doubnode_size(*head)) {
+    return 0;
+  }
+  if (index == 0) {
+    DoubNode *delete = *head;
+    *head = delete->next;
+    if (*head != NULL) {
+      (*head)->prev = NULL;
+    }
+    int v = delete->v;
+    doubnode_delete(delete);
+    return v;
+  }
+  DoubNode *delete = doubnode_index(*head, index);
+  DoubNode *prev = delete->prev;
+  DoubNode *next = delete->next;
+  prev->next = next;
+  if (next != NULL) {
+    next->prev = prev;
+  }
+  int v = delete->v;
+  doubnode_delete(delete);
+  return v;
+}
