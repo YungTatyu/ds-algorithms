@@ -50,3 +50,17 @@ int stack_pop(Stack *st) {
   --(st->top);
   return v;
 }
+
+int stack_peek(const Stack *st, size_t index) {
+  if (index > st->top) {
+    return -1;
+  }
+  return st->s[st->top - index];
+}
+
+int stack_top(const Stack *st) {
+  if (stack_empty(st)) {
+    return -1;
+  }
+  return st->s[st->top];
+}

@@ -24,3 +24,7 @@ int stack_empty(const Stack *st);
 void stack_push(Stack *st, int v);
 
 int stack_pop(Stack *st);
+
+int stack_peek(const Stack *st, size_t index);
+
+int stack_top(const Stack *st);
