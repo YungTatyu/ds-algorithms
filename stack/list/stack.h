@@ -22,3 +22,5 @@ void stack_push(Stack *st, int v);
 int stack_pop(Stack *st);
 
 void stack_display(const Stack *st);
+
+int stack_empty(const Stack *st);

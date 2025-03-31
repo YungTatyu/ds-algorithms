@@ -46,3 +46,5 @@ void stack_display(const Stack *st) {
   }
   printf("\n");
 }
+
+int stack_empty(const Stack *st) { return st->top == NULL; }
