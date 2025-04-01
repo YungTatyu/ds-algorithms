@@ -17,7 +17,7 @@ void stack_delete(Stack *st) {
   free(st);
 }
 
-void stack_push(Stack *st, int v) {
+void stack_push(Stack *st, char v) {
   StackNode *node = calloc(1, sizeof(StackNode));
   if (node == NULL) {
     return;
@@ -27,7 +27,7 @@ void stack_push(Stack *st, int v) {
   st->top = node;
 }
 
-int stack_pop(Stack *st) {
+char stack_pop(Stack *st) {
   if (st->top == NULL) {
     return -1;
   }
@@ -47,4 +47,4 @@ void stack_display(const Stack *st) {
   printf("\n");
 }
 
-int stack_empty(const Stack *st) { return st->top == NULL; }
+char stack_empty(const Stack *st) { return st->top == NULL; }

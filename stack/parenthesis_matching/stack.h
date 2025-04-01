@@ -1,7 +1,7 @@
 #pragma once
 
 struct StackNode {
-  int v;
+  char v;
   struct StackNode *next;
 };
 
@@ -17,10 +17,10 @@ Stack *stack_new();
 
 void stack_delete(Stack *st);
 
-void stack_push(Stack *st, int v);
+void stack_push(Stack *st, char v);
 
-int stack_pop(Stack *st);
+char stack_pop(Stack *st);
 
 void stack_display(const Stack *st);
 
-int stack_empty(const Stack *st);
+char stack_empty(const Stack *st);
