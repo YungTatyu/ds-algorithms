@@ -24,3 +24,5 @@ int stack_pop(Stack *st);
 void stack_display(const Stack *st);
 
 int stack_empty(const Stack *st);
+
+int stack_top(const Stack *st);

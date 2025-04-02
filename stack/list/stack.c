@@ -48,3 +48,10 @@ void stack_display(const Stack *st) {
 }
 
 int stack_empty(const Stack *st) { return st->top == NULL; }
+
+int stack_top(const Stack *st) {
+  if (stack_empty(st)) {
+    return -1;
+  }
+  return st->top->v;
+}
