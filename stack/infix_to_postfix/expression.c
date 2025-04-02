@@ -67,7 +67,7 @@ int is_operator(char ch) {
 }
 
 char *convert(const char *infix) {
-  char *postfix = calloc(strlen(infix), sizeof(char));
+  char *postfix = calloc(strlen(infix) + 1, sizeof(char));
   if (postfix == NULL) {
     return NULL;
   }
@@ -81,16 +81,15 @@ char *convert(const char *infix) {
   while (infix[in_i] != '\0') {
     char ch = infix[in_i];
     if (is_operator(ch)) {
-      if (stack_empty(st) || precedence(ch) < precedence(stack_top(st))) {
+      if (stack_empty(st) || precedence(ch) > precedence(stack_top(st))) {
         stack_push(st, ch);
       } else {
-        postfix[post_i] = ch;
-        ++post_i;
         while (!stack_empty(st) &&
-               precedence(ch) >= precedence(stack_top(st))) {
+               precedence(ch) <= precedence(stack_top(st))) {
           postfix[post_i] = stack_pop(st);
           ++post_i;
         }
+        stack_push(st, ch);
       }
     } else {
       postfix[post_i] = ch;
@@ -102,5 +101,6 @@ char *convert(const char *infix) {
     postfix[post_i] = stack_pop(st);
     ++post_i;
   }
+  stack_delete(st);
   return postfix;
 }

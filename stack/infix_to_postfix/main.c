@@ -11,10 +11,14 @@ int main(int argc, char *argv[]) {
   printf("%d\n", is_balanced(stack_new(), exp2));
   printf("%d\n", is_balanced(stack_new(), exp3));
   printf("%d\n", is_balanced(stack_new(), exp4));
-  printf("Test 1: %s\n", convert("a+b*c"));       // Expected: "abc*+"
-  printf("Test 2: %s\n", convert("a+b*c-d/e"));   // Expected: "abc*+de/-"
-  printf("Test 3: %s\n", convert("(a+b)*c"));     // Expected: "ab+c*"
-  printf("Test 4: %s\n", convert("a+b*(c^d-e)")); // Expected: "abcd^e-*+"
+  printf("Test 1: %s       // Expected: abc*+\n", convert("a+b*c"));
+  printf("Test 2: %s   // Expected: abc*+de/-\n", convert("a+b*c-d/e"));
+  printf("Test 3: %s       // Expected: ab-c+\n", convert("a-b+c"));
+  printf("Test 4: %s     // Expected: abc*/d-\n", convert("a*b/c-d"));
+  printf("Test 5: %s   // Expected: ab*c*d/e+\n", convert("a*b*c/d+e"));
+  printf("Test 6: %s // Expected: abc*+de^f/-\n", convert("a+b*c-d/e^f"));
+  printf("Test 7: %s // Expected: abc*d/-ef*+\n", convert("a-b*c/d+e*f"));
+  printf("Test 8: %s // Expected: ab+cd*ef^/-\n", convert("a+b-c*d/e^f"));
 
   return 0;
 }
