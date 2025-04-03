@@ -66,7 +66,10 @@ int is_operator(char ch) {
   return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
 }
 
-char *convert(const char *infix) {
+/**
+ * before refactor to convert
+ */
+char *convert_w(const char *infix) {
   char *postfix = calloc(strlen(infix) + 1, sizeof(char));
   if (postfix == NULL) {
     return NULL;
@@ -96,6 +99,42 @@ char *convert(const char *infix) {
       ++post_i;
     }
     ++in_i;
+  }
+  while (!stack_empty(st)) {
+    postfix[post_i] = stack_pop(st);
+    ++post_i;
+  }
+  stack_delete(st);
+  return postfix;
+}
+
+char *convert(const char *infix) {
+  char *postfix = calloc(strlen(infix) + 1, sizeof(char));
+  if (postfix == NULL) {
+    return NULL;
+  }
+  size_t in_i = 0;
+  size_t post_i = 0;
+  Stack *st = stack_new();
+  if (st == NULL) {
+    free(postfix);
+    return NULL;
+  }
+  while (infix[in_i] != '\0') {
+    char ch = infix[in_i];
+    if (is_operator(ch)) {
+      if (stack_empty(st) || precedence(ch) > precedence(stack_top(st))) {
+        stack_push(st, ch);
+        ++in_i;
+      } else {
+        postfix[post_i] = stack_pop(st);
+        ++post_i;
+      }
+    } else {
+      postfix[post_i] = ch;
+      ++post_i;
+      ++in_i;
+    }
   }
   while (!stack_empty(st)) {
     postfix[post_i] = stack_pop(st);
