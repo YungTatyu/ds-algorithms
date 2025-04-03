@@ -63,7 +63,8 @@ int precedence(char op) {
 }
 
 int is_operator(char ch) {
-  return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
+  return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^' ||
+         ch == '(' || ch == ')';
 }
 
 /**
@@ -108,7 +109,11 @@ char *convert_v1(const char *infix) {
   return postfix;
 }
 
-char *convert(const char *infix) {
+/**
+ *
+ * () not handled
+ */
+char *convert_v2(const char *infix) {
   char *postfix = calloc(strlen(infix) + 1, sizeof(char));
   if (postfix == NULL) {
     return NULL;
@@ -125,6 +130,88 @@ char *convert(const char *infix) {
     if (is_operator(ch)) {
       if (stack_empty(st) || precedence(ch) > precedence(stack_top(st))) {
         stack_push(st, ch);
+        ++in_i;
+      } else {
+        postfix[post_i] = stack_pop(st);
+        ++post_i;
+      }
+    } else {
+      postfix[post_i] = ch;
+      ++post_i;
+      ++in_i;
+    }
+  }
+  while (!stack_empty(st)) {
+    postfix[post_i] = stack_pop(st);
+    ++post_i;
+  }
+  stack_delete(st);
+  return postfix;
+}
+
+int out_stack_precedence(char op) {
+  switch (op) {
+  case '+':
+  case '-':
+    return 1;
+  case '*':
+  case '/':
+    return 3;
+  case '^':
+    return 6;
+  case '(':
+    return 7;
+  case ')':
+    return 0;
+  default:
+    return -1;
+  }
+}
+
+int in_stack_precedence(char op) {
+  switch (op) {
+  case '+':
+  case '-':
+    return 2;
+  case '*':
+  case '/': // these above are left to right associative
+    return 4;
+  case '^': // ^ is right to left associative
+    return 5;
+  case '(':
+    return 0;
+  default:
+    // ) does not get pushed to stack
+    return -1;
+  }
+}
+
+/**
+ * higher precedence get pushed to stack
+ */
+char *convert(const char *infix) {
+  char *postfix = calloc(strlen(infix) + 1, sizeof(char));
+  if (postfix == NULL) {
+    return NULL;
+  }
+  size_t in_i = 0;
+  size_t post_i = 0;
+  Stack *st = stack_new();
+  if (st == NULL) {
+    free(postfix);
+    return NULL;
+  }
+  while (infix[in_i] != '\0') {
+    char ch = infix[in_i];
+    if (is_operator(ch)) {
+      if (stack_empty(st) ||
+          out_stack_precedence(ch) > in_stack_precedence(stack_top(st))) {
+        stack_push(st, ch);
+        ++in_i;
+      } else if (out_stack_precedence(ch) ==
+                 in_stack_precedence(stack_top(st))) {
+        // only ( and ) are equals 0 ( == )
+        stack_pop(st);
         ++in_i;
       } else {
         postfix[post_i] = stack_pop(st);

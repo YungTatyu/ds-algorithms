@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
   printf("Test 6: %s // Expected: abc*+de^f/-\n", convert("a+b*c-d/e^f"));
   printf("Test 7: %s // Expected: abc*d/-ef*+\n", convert("a-b*c/d+e*f"));
   printf("Test 8: %s // Expected: ab+cd*ef^/-\n", convert("a+b-c*d/e^f"));
+  printf("Test 9: %s // Expected: ab+c*def^^-\n", convert("((a+b)*c-d^e^f)"));
 
   return 0;
 }
