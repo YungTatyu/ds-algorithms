@@ -69,7 +69,7 @@ int is_operator(char ch) {
 /**
  * before refactor to convert
  */
-char *convert_w(const char *infix) {
+char *convert_v1(const char *infix) {
   char *postfix = calloc(strlen(infix) + 1, sizeof(char));
   if (postfix == NULL) {
     return NULL;
