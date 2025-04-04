@@ -230,3 +230,56 @@ char *convert(const char *infix) {
   cstack_delete(st);
   return postfix;
 }
+
+int power(int base, int exponent) {
+  if (exponent == 0) {
+    return 1;
+  }
+  if (exponent % 2 == 0) {
+    return power(base * base, exponent / 2);
+  } else {
+    return base * power(base * base, (exponent - 1) / 2);
+  }
+}
+
+int eval(const char *postfix) {
+  Stack *st = stack_new();
+  if (st == NULL) {
+    return -1;
+  }
+  for (size_t i = 0; postfix[i] != '\0'; ++i) {
+    if (is_operator(postfix[i])) {
+      if (stack_size(st) < 2) {
+        return -1;
+      }
+      int v2 = stack_pop(st);
+      int v1 = stack_pop(st);
+      int re = 0;
+      switch (postfix[i]) {
+      case '+':
+        re = v1 + v2;
+        break;
+      case '-':
+        re = v1 - v2;
+        break;
+      case '*':
+        re = v1 * v2;
+        break;
+      case '/':
+        re = v1 / v2;
+        break;
+      case '^':
+        re = power(v1, v2);
+        break;
+      default:
+        break;
+      }
+      stack_push(st, re);
+    } else {
+      stack_push(st, (int)(postfix[i] - '0'));
+    }
+  }
+  int re = stack_pop(st);
+  stack_delete(st);
+  return re;
+}

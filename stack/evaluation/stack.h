@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stddef.h>
+
 struct CStackNode {
   char v;
   struct CStackNode *next;
@@ -53,3 +55,5 @@ void stack_display(const Stack *st);
 int stack_empty(const Stack *st);
 
 int stack_top(const Stack *st);
+
+size_t stack_size(const Stack *st);

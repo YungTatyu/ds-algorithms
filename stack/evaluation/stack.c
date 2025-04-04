@@ -109,3 +109,13 @@ int stack_top(const Stack *st) {
   }
   return st->top->v;
 }
+
+size_t stack_size(const Stack *st) {
+  size_t i = 0;
+  StackNode *node = st->top;
+  while (node != NULL) {
+    ++i;
+    node = node->next;
+  }
+  return i;
+}

@@ -33,3 +33,5 @@ char *convert(const char *infix);
 int precedence(char op);
 
 int is_operator(char ch);
+
+int eval(const char *postfix);

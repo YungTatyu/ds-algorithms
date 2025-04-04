@@ -1,25 +1,28 @@
 #include "expression.h"
-#include "stack.h"
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-  const char *exp1 = "((a+b)*(c-d))";
-  const char *exp2 = "((a+b)*(c-d)";
-  const char *exp3 = "([a+b]*{c-d})";
-  const char *exp4 = "([a+b]*{c-d})}";
-  printf("%d\n", is_balanced(cstack_new(), exp1));
-  printf("%d\n", is_balanced(cstack_new(), exp2));
-  printf("%d\n", is_balanced(cstack_new(), exp3));
-  printf("%d\n", is_balanced(cstack_new(), exp4));
-  printf("Test 1: %s       // Expected: abc*+\n", convert("a+b*c"));
-  printf("Test 2: %s   // Expected: abc*+de/-\n", convert("a+b*c-d/e"));
-  printf("Test 3: %s       // Expected: ab-c+\n", convert("a-b+c"));
-  printf("Test 4: %s     // Expected: abc*/d-\n", convert("a*b/c-d"));
-  printf("Test 5: %s   // Expected: ab*c*d/e+\n", convert("a*b*c/d+e"));
-  printf("Test 6: %s // Expected: abc*+de^f/-\n", convert("a+b*c-d/e^f"));
-  printf("Test 7: %s // Expected: abc*d/-ef*+\n", convert("a-b*c/d+e*f"));
-  printf("Test 8: %s // Expected: ab+cd*ef^/-\n", convert("a+b-c*d/e^f"));
-  printf("Test 9: %s // Expected: ab+c*def^^-\n", convert("((a+b)*c-d^e^f)"));
+  printf("Test 1: %d \n",
+         eval(convert("((1+2)*3-2^2)"))); // 結果: (1+2)=3 → 3*3=9 → 9-4=5
+  printf("Test 2: %d \n",
+         eval(convert("(4+5*2)^2"))); // 結果: 5*2=10 → 4+10=14 → 14^2=196
+  printf("Test 3: %d \n", eval(convert("7+3*2"))); // 結果: 3*2=6 → 7+6=13
+  printf("Test 4: %d \n",
+         eval(convert("10-(3+2)*2"))); // 結果: 3+2=5 → 5*2=10 → 10-10=0
+  printf("Test 5: %d \n",
+         eval(convert("2^3^2"))); // 結果: 3^2=9 → 2^9=512（右結合）
+  printf("Test 6: %d \n",
+         eval(convert(
+             "((8/2)+(3*4))-5"))); // 結果: 8/2=4, 3*4=12 → 4+12=16 → 16-5=11
+  printf("Test 7: %d \n",
+         eval(convert("18/(3*(2+1))"))); // 結果: 2+1=3 → 3*3=9 → 18/9=2
+  printf("Test 8: %d \n",
+         eval(convert("((2+3)*(4+1))"))); // 結果: 2+3=5, 4+1=5 → 5*5=25
+  printf("Test 9: %d \n",
+         eval(convert(
+             "5+((1+2)*(3+4))"))); // 結果: 1+2=3, 3+4=7 → 3*7=21 → 5+21=26
+  printf("Test 10: %d \n",
+         eval(convert("((3+5)/2)^2"))); // 結果: 3+5=8 → 8/2=4 → 4^2=16
 
   return 0;
 }
