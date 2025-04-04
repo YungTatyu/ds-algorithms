@@ -250,6 +250,7 @@ int eval(const char *postfix) {
   for (size_t i = 0; postfix[i] != '\0'; ++i) {
     if (is_operator(postfix[i])) {
       if (stack_size(st) < 2) {
+        stack_delete(st);
         return -1;
       }
       int v2 = stack_pop(st);
