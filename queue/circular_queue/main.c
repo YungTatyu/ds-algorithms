@@ -6,10 +6,10 @@ int main(int argc, char *argv[]) {
   for (size_t i = 0; i <= 10; ++i) {
     queue_enqueue(q, i);
   }
+  queue_display(q);
   for (size_t i = 0; i <= 10; ++i) {
     queue_dequeue(q);
   }
-  queue_display(q);
   queue_enqueue(q, 1);
   queue_enqueue(q, 2);
   queue_enqueue(q, 3);
