@@ -15,8 +15,6 @@ Queue *queue_new(size_t size);
 
 void queue_delete(Queue *q);
 
-size_t queue_index(const Queue *q, size_t index);
-
 void queue_enqueue(Queue *q, int v);
 
 int queue_dequeue(Queue *q);

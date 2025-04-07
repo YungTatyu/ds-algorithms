@@ -22,7 +22,9 @@ void queue_delete(Queue *q) {
   free(q);
 }
 
-size_t queue_index(const Queue *q, size_t index) { return index % q->size; }
+inline static size_t queue_index(const Queue *q, size_t index) {
+  return index % q->size;
+}
 
 size_t queue_size(const Queue *q) { return q->size; }
 
