@@ -26,7 +26,7 @@ size_t dequeue_size(const Dequeue *q) { return q->size; }
 
 int dequeue_empty(const Dequeue *q) { return q->size == 0; }
 
-int dequeue_full(const Dequeue *q) { return q->size == q->capacity; }
+int dequeue_full(const Dequeue *q) { return q->size == q->capacity - 1; }
 
 inline static size_t dequeue_index(const Dequeue *q, size_t index) {
   return index % q->capacity;
