@@ -20,6 +20,8 @@ typedef struct Queue Queue;
 
 Queue *queue_new();
 
+void queue_delete(Queue *q);
+
 void queue_enqueue(Queue *q, BinaryTreeNode *node);
 
 BinaryTreeNode *queue_dequeue(Queue *q);

@@ -1,3 +1,11 @@
-#include "queue.h"
+#include "binary_tree.h"
 
-int main(int argc, char *argv[]) { return 0; }
+int main(int argc, char *argv[]) {
+
+  int arr[] = {1, 2, 3, 4, 5};
+
+  BinaryTreeNode *root = binary_tree_create(arr, sizeof(arr) / sizeof(int));
+  binary_tree_preorder(root);
+  binary_tree_delete(root);
+  return 0;
+}

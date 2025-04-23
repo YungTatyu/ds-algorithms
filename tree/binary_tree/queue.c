@@ -11,6 +11,15 @@ Queue *queue_new() {
   return q;
 }
 
+void queue_delete(Queue *q) {
+  while (q->front != NULL) {
+    QueueNode *tmp = q->front->next;
+    free(q->front);
+    q->front = tmp;
+  }
+  free(q);
+}
+
 int queue_empty(const Queue *q) { return q->front == NULL; }
 
 void queue_enqueue(Queue *q, BinaryTreeNode *b_node) {
