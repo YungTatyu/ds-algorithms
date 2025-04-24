@@ -26,4 +26,6 @@ void queue_enqueue(Queue *q, BinaryTreeNode *node);
 
 BinaryTreeNode *queue_dequeue(Queue *q);
 
+BinaryTreeNode *queue_front(Queue *q);
+
 int queue_empty(const Queue *q);

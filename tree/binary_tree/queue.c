@@ -46,3 +46,10 @@ BinaryTreeNode *queue_dequeue(Queue *q) {
   q->front = next;
   return re;
 }
+
+BinaryTreeNode *queue_front(Queue *q) {
+  if (queue_empty(q)) {
+    return NULL;
+  }
+  return q->front->node;
+}

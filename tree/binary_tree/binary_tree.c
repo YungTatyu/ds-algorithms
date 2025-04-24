@@ -60,17 +60,18 @@ BinaryTreeNode *binary_tree_create(int *arr, size_t size) {
   }
   queue_enqueue(q, root);
   for (size_t i = 1; i < size; ++i) {
-    BinaryTreeNode *parent = queue_dequeue(q);
+    BinaryTreeNode *parent = queue_front(q);
     BinaryTreeNode *child = binary_tree_new(arr[i]);
     if (child == NULL) {
       binary_tree_delete(root);
       queue_delete(q);
+      return NULL;
     }
     if (i % 2 == 1) {
       parent->lchild = child;
-      queue_enqueue(q, parent);
     } else {
       parent->rchild = child;
+      queue_dequeue(q);
     }
     queue_enqueue(q, child);
   }
