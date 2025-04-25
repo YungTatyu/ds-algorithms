@@ -12,4 +12,6 @@ BstNode *bst_new(int v);
 
 void bst_delete(BstNode *root);
 
-void bst_insert(BstNode *root, int v);
+BstNode *bst_insert(BstNode *root, int v);
+
+void bst_inorder(const BstNode *root);
