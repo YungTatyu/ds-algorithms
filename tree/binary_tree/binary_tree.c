@@ -1,6 +1,7 @@
 #include "binary_tree.h"
 #include "queue.h"
 #include "stack.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -155,4 +156,13 @@ void binary_tree_levelorder(const BinaryTreeNode *root) {
   }
   queue_dequeue(q);
   printf("\n");
+}
+
+size_t binary_tree_count(const BinaryTreeNode *node) {
+  if (node == NULL) {
+    return 0;
+  }
+  size_t left = binary_tree_count(node->lchild);
+  size_t right = binary_tree_count(node->rchild);
+  return left + right + 1;
 }
