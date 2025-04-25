@@ -1,5 +1,6 @@
 #include "binary_tree.h"
 #include "queue.h"
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -95,4 +96,22 @@ void binary_tree_recur_postorder(const BinaryTreeNode *node) {
   binary_tree_recur_postorder(node->lchild);
   binary_tree_recur_postorder(node->rchild);
   printf("%d ", node->v);
+}
+
+void binary_tree_preorder(const BinaryTreeNode *root) {
+  Stack *st = stack_new();
+  if (st == NULL) {
+    return;
+  }
+  while (root != NULL || !stack_empty(st)) {
+    if (root != NULL) {
+      printf("%d ", root->v);
+      stack_push(st, (BinaryTreeNode *)root);
+      root = root->lchild;
+    } else {
+      root = stack_pop(st)->rchild;
+    }
+  }
+  printf("\n");
+  stack_delete(st);
 }
