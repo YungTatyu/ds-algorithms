@@ -189,3 +189,24 @@ size_t binary_tree_count_node_degree_two(const BinaryTreeNode *node) {
     return left + right;
   }
 }
+
+/**
+ * Calculates the level of a binary tree.
+ * An empty tree has a level of 0, and a tree with only one node (the root) has
+ * a level of 1.
+ *
+ * @param node The root node of the binary tree (or subtree).
+ * @return The level of the tree.
+ */
+size_t binary_tree_count_level(const BinaryTreeNode *node) {
+  if (node == NULL) {
+    return 0;
+  }
+  size_t left = binary_tree_count_node(node->lchild);
+  size_t right = binary_tree_count_node(node->rchild);
+  if (left > right) {
+    return left + 1;
+  } else {
+    return right + 1;
+  }
+}

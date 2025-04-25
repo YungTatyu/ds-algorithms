@@ -3,11 +3,13 @@
 
 int main(int argc, char *argv[]) {
 
-  int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+  // int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+  int arr[] = {1, 2, 3, 4, 5};
 
   BinaryTreeNode *root = binary_tree_create(arr, sizeof(arr) / sizeof(int));
   printf("%zu\n", binary_tree_count_node(root));
   printf("%zu\n", binary_tree_count_node_degree_two(root));
+  printf("%zu\n", binary_tree_count_level(root));
   binary_tree_levelorder(root);
   binary_tree_preorder(root);
   binary_tree_recur_preorder(root);

@@ -31,3 +31,5 @@ void binary_tree_recur_postorder(const BinaryTreeNode *node);
 size_t binary_tree_count_node(const BinaryTreeNode *node);
 
 size_t binary_tree_count_node_degree_two(const BinaryTreeNode *node);
+
+size_t binary_tree_count_level(const BinaryTreeNode *node);
