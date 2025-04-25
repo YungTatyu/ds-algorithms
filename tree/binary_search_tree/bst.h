@@ -14,4 +14,6 @@ void bst_delete(BstNode *root);
 
 BstNode *bst_insert(BstNode *root, int v);
 
+BstNode *bst_search(const BstNode *root, int key);
+
 void bst_inorder(const BstNode *root);

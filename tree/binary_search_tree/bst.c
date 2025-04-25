@@ -49,6 +49,20 @@ BstNode *bst_insert(BstNode *root, int v) {
   return root;
 }
 
+BstNode *bst_search(const BstNode *root, int key) {
+  while (root != NULL) {
+    if (root->v == key) {
+      return (BstNode *)root;
+    }
+    if (key < root->v) {
+      root = root->lchild;
+    } else {
+      root = root->rchild;
+    }
+  }
+  return NULL;
+}
+
 void bst_inorder(const BstNode *root) {
   if (root == NULL) {
     return;
