@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
   BinaryTreeNode *root = binary_tree_create(arr, sizeof(arr) / sizeof(int));
   printf("%zu\n", binary_tree_count_node(root));
   printf("%zu\n", binary_tree_count_node_degree_two(root));
-  printf("%zu\n", binary_tree_count_level(root));
+  printf("%zu\n", binary_tree_height(root));
   binary_tree_levelorder(root);
   binary_tree_preorder(root);
   binary_tree_recur_preorder(root);

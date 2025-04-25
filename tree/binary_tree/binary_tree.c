@@ -191,14 +191,20 @@ size_t binary_tree_count_node_degree_two(const BinaryTreeNode *node) {
 }
 
 /**
- * Calculates the level of a binary tree.
- * An empty tree has a level of 0, and a tree with only one node (the root) has
- * a level of 1.
+ * Calculates the height (or depth) of a binary tree.
+ *
+ * The height of a binary tree is defined as the number of levels
+ * from the root node down to the deepest leaf node. An empty tree
+ * has a height of 0, and a tree with only one node (the root) has a height
+ * of 1.
+ *
+ * This function recursively computes the height by finding the maximum
+ * height of the left and right subtrees and adding 1 for the current level.
  *
  * @param node The root node of the binary tree (or subtree).
- * @return The level of the tree.
+ * @return The height (number of levels) of the tree.
  */
-size_t binary_tree_count_level(const BinaryTreeNode *node) {
+size_t binary_tree_height(const BinaryTreeNode *node) {
   if (node == NULL) {
     return 0;
   }
