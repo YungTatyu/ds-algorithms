@@ -20,6 +20,9 @@ int main(int argc, char *argv[]) {
   printf("%x\n", bst_search(root, 10));
   printf("%x\n", bst_search(root, 0));
   printf("%x\n", bst_search(root, 41));
+  printf("%x\n", bst_recur_search(root, 10));
+  printf("%x\n", bst_recur_search(root, 0));
+  printf("%x\n", bst_recur_search(root, 41));
   bst_inorder(root);
 
   return 0;

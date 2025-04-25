@@ -18,4 +18,6 @@ BstNode *bst_search(const BstNode *root, int key);
 
 BstNode *bst_recur_insert(BstNode *node, int v);
 
+BstNode *bst_recur_search(const BstNode *node, int v);
+
 void bst_inorder(const BstNode *root);
