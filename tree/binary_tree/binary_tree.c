@@ -158,11 +158,34 @@ void binary_tree_levelorder(const BinaryTreeNode *root) {
   printf("\n");
 }
 
-size_t binary_tree_count(const BinaryTreeNode *node) {
+size_t binary_tree_count_node(const BinaryTreeNode *node) {
   if (node == NULL) {
     return 0;
   }
-  size_t left = binary_tree_count(node->lchild);
-  size_t right = binary_tree_count(node->rchild);
+  size_t left = binary_tree_count_node(node->lchild);
+  size_t right = binary_tree_count_node(node->rchild);
   return left + right + 1;
+}
+
+/**
+ * Counts the number of nodes in a binary tree that have exactly two children.
+ *
+ * A node has degree two if it has both a left and a right child.
+ * This function performs a recursive traversal of the binary tree,
+ * incrementing the count whenever it encounters a node with two children.
+ *
+ * @param node The root node of the binary tree (or subtree).
+ * @return The number of nodes with exactly two children.
+ */
+size_t binary_tree_count_node_degree_two(const BinaryTreeNode *node) {
+  if (node == NULL) {
+    return 0;
+  }
+  size_t left = binary_tree_count_node_degree_two(node->lchild);
+  size_t right = binary_tree_count_node_degree_two(node->rchild);
+  if (node->lchild != NULL && node->rchild != NULL) {
+    return left + right + 1;
+  } else {
+    return left + right;
+  }
 }
