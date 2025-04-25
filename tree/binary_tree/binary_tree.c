@@ -115,3 +115,22 @@ void binary_tree_preorder(const BinaryTreeNode *root) {
   printf("\n");
   stack_delete(st);
 }
+
+void binary_tree_inorder(const BinaryTreeNode *root) {
+  Stack *st = stack_new();
+  if (st == NULL) {
+    return;
+  }
+  while (root != NULL || !stack_empty(st)) {
+    if (root != NULL) {
+      stack_push(st, (BinaryTreeNode *)root);
+      root = root->lchild;
+    } else {
+      root = stack_pop(st);
+      printf("%d ", root->v);
+      root = root->rchild;
+    }
+  }
+  printf("\n");
+  stack_delete(st);
+}

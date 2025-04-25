@@ -8,7 +8,9 @@ int main(int argc, char *argv[]) {
   binary_tree_preorder(root);
   binary_tree_recur_preorder(root);
 
+  binary_tree_inorder(root);
   binary_tree_recur_inorder(root);
+
   binary_tree_recur_postorder(root);
   binary_tree_delete(root);
   return 0;
