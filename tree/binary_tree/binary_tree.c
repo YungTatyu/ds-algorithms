@@ -191,6 +191,29 @@ size_t binary_tree_count_node_degree_two(const BinaryTreeNode *node) {
 }
 
 /**
+ * Counts the number of nodes in a binary tree that have exactly one child.
+ *
+ * A node has degree one if it has either a left child or a right child,
+ * but not both. This function recursively traverses the tree and
+ * increments the count when such a node is found.
+ *
+ * @param node The root node of the binary tree (or subtree).
+ * @return The number of nodes with exactly one child.
+ */
+size_t binary_tree_count_node_degree_one(const BinaryTreeNode *node) {
+  if (node == NULL) {
+    return 0;
+  }
+  size_t left = binary_tree_count_node_degree_one(node->lchild);
+  size_t right = binary_tree_count_node_degree_one(node->rchild);
+  if (node->lchild != NULL ^ node->rchild != NULL) {
+    return left + right + 1;
+  } else {
+    return left + right;
+  }
+}
+
+/**
  * Calculates the height (or depth) of a binary tree.
  *
  * The height of a binary tree is defined as the number of levels
