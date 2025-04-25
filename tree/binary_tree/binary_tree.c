@@ -134,3 +134,25 @@ void binary_tree_inorder(const BinaryTreeNode *root) {
   printf("\n");
   stack_delete(st);
 }
+
+void binary_tree_levelorder(const BinaryTreeNode *root) {
+  if (root == NULL) {
+    return;
+  }
+  Queue *q = queue_new();
+  queue_enqueue(q, (BinaryTreeNode *)root);
+  printf("%d ", root->v);
+  while (!queue_empty(q)) {
+    BinaryTreeNode *node = queue_dequeue(q);
+    if (node->lchild != NULL) {
+      printf("%d ", node->lchild->v);
+      queue_enqueue(q, node->lchild);
+    }
+    if (node->rchild != NULL) {
+      printf("%d ", node->rchild->v);
+      queue_enqueue(q, node->rchild);
+    }
+  }
+  queue_dequeue(q);
+  printf("\n");
+}
