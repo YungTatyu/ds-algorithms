@@ -63,6 +63,18 @@ BstNode *bst_search(const BstNode *root, int key) {
   return NULL;
 }
 
+BstNode *bst_recur_insert(BstNode *node, int v) {
+  if (node == NULL) {
+    return bst_new(v);
+  }
+  if (v < node->v) {
+    node->lchild = bst_recur_insert(node->lchild, v);
+  } else if (v > node->v) {
+    node->rchild = bst_recur_insert(node->rchild, v);
+  }
+  return node;
+}
+
 void bst_inorder(const BstNode *root) {
   if (root == NULL) {
     return;
