@@ -6,6 +6,8 @@ int main(int argc, char *argv[]) {
 
   BinaryTreeNode *root = binary_tree_create(arr, sizeof(arr) / sizeof(int));
   binary_tree_preorder(root);
+  binary_tree_inorder(root);
+  binary_tree_postorder(root);
   binary_tree_delete(root);
   return 0;
 }
