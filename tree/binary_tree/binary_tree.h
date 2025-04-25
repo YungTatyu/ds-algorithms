@@ -14,10 +14,16 @@ BinaryTreeNode *binary_tree_new(int v);
 
 void binary_tree_delete(BinaryTreeNode *root);
 
-void binary_tree_preorder(BinaryTreeNode *node);
-
-void binary_tree_inorder(BinaryTreeNode *node);
-
-void binary_tree_postorder(BinaryTreeNode *node);
-
 BinaryTreeNode *binary_tree_create(int *arr, size_t size);
+
+void binary_tree_preorder(const BinaryTreeNode *root);
+
+void binary_tree_inorder(const BinaryTreeNode *root);
+
+void binary_tree_postorder(const BinaryTreeNode *root);
+
+void binary_tree_recur_preorder(const BinaryTreeNode *node);
+
+void binary_tree_recur_inorder(const BinaryTreeNode *node);
+
+void binary_tree_recur_postorder(const BinaryTreeNode *node);
