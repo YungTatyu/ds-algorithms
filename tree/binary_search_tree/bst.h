@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stddef.h>
 struct BstNode {
   struct BstNode *lchild;
   struct BstNode *rchild;
@@ -20,4 +21,12 @@ BstNode *bst_recur_insert(BstNode *node, int v);
 
 BstNode *bst_recur_search(const BstNode *node, int v);
 
+BstNode *bst_erase(BstNode *root, int key);
+
 void bst_inorder(const BstNode *root);
+
+BstNode *bst_inorder_predecessor(const BstNode *node);
+
+BstNode *bst_inorder_successor(const BstNode *node);
+
+size_t bst_height(const BstNode *root);
