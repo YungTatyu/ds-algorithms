@@ -101,11 +101,11 @@ BstNode *bst_erase(BstNode *root, int key) {
       free(root);
       return NULL;
     } else if (bst_height(root->lchild) > bst_height(root->rchild)) {
-      BstNode *pre = bst_inorder_predecessor(root);
+      BstNode *pre = bst_inorder_predecessor(root->lchild);
       root->v = pre->v;
       root->lchild = bst_erase(root->lchild, pre->v);
     } else {
-      BstNode *post = bst_inorder_successor(root);
+      BstNode *post = bst_inorder_successor(root->rchild);
       root->v = post->v;
       root->rchild = bst_erase(root->rchild, post->v);
     }
