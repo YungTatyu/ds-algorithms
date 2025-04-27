@@ -15,4 +15,6 @@ AvlNode *avl_new(int v);
 
 void avl_delete(AvlNode *root);
 
-AvlNode *avl_insert(AvlNode *root, int key);
+AvlNode *avl_recur_insert(AvlNode *node, int v);
+
+size_t avl_height_node(const AvlNode *node);
