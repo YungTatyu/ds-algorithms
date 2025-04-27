@@ -36,8 +36,9 @@ AvlNode *avl_recur_insert(AvlNode *node, int v) {
   long lbf = avl_balance_factor(node->lchild);
   if (bf > 1 && lbf == 1) {
     return avl_llrotation(node);
-  } // } else if (bf > 1 && lbf == -1) {
-  //   return avl_lrrotation(node);
+  } else if (bf > 1 && lbf == -1) {
+    return avl_lrrotation(node);
+  }
   // } else if (bf < -1 && lbf == 1) {
   //   return avl_rlrotation(node);
   // } else if (bf < -1 && lbf == -1) {
@@ -75,6 +76,32 @@ long avl_balance_factor(const AvlNode *node) {
   return left - right;
 }
 
+/**
+ * Performs a left-left (LL) rotation on the given AVL tree node.
+ *
+ * LL rotation is used to fix an imbalance where a node's left child
+ * is taller, and that left child also has a taller left subtree
+ * (causing a heavy tilt to the left).
+ *
+ * After rotation:
+ * - The left child becomes the new root of the subtree.
+ * - The original root becomes the right child of the new root.
+ * - The affected nodes' heights are updated.
+ *
+ * Simple diagram for LL rotation:
+ *
+ *     Before rotation:                   After rotation:
+ *         node                                left
+ *         /                                   /   \
+ *      left       =>                     left_left  node
+ *      /    \                                        /    \
+ *  left_left left_right                    left_right  right_child
+ *
+ * (`right_child` represents the original right child of `node`, if any.)
+ *
+ * @param node A pointer to the root of the unbalanced subtree.
+ * @return A pointer to the new root of the subtree after rotation.
+ */
 AvlNode *avl_llrotation(AvlNode *node) {
   AvlNode *left = node->lchild;
   AvlNode *left_to_right = left->rchild;
@@ -83,4 +110,48 @@ AvlNode *avl_llrotation(AvlNode *node) {
   node->height = avl_height_node(node);
   left->height = avl_height_node(left);
   return left;
+}
+
+/**
+ * Performs a left-right (LR) double rotation on the given AVL tree node.
+ *
+ * LR rotation is used to fix an imbalance where a node's left child
+ * is taller, but that left child itself has a taller right subtree
+ * (causing a left-right tilt).
+ *
+ * The LR rotation consists of two steps:
+ * 1. Perform a left rotation on the left child.
+ * 2. Perform a right rotation on the node itself.
+ *
+ * After rotation:
+ * - The left child's right child (`left_right`) becomes the new root of the
+ * subtree.
+ * - The original left child becomes the left child of `left_right`.
+ * - The original node becomes the right child of `left_right`.
+ * - Heights are updated appropriately.
+ *
+ * Simple diagram for LR rotation:
+ *
+ *     Before rotations:                   After rotations:
+ *         node                                left_right
+ *         /                                      /        \
+ *      left       =>                         left        node
+ *        \
+ *      left_right
+ *
+ * (`left_left` and `right_child` are the original left and right subtrees of
+ * `left` and `node` respectively, if they exist.)
+ *
+ * @param node A pointer to the root of the unbalanced subtree.
+ * @return A pointer to the new root of the subtree after double rotation.
+ */
+AvlNode *avl_lrrotation(AvlNode *node) {
+  AvlNode *left = node->lchild;
+  AvlNode *left_to_right = left->rchild;
+  left_to_right->lchild = left;
+  left_to_right->rchild = node;
+
+  node->height = avl_height_node(node);
+  left_to_right->height = avl_height_node(left_to_right);
+  return left_to_right;
 }
