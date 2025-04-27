@@ -20,3 +20,11 @@ AvlNode *avl_recur_insert(AvlNode *node, int v);
 size_t avl_height_node(const AvlNode *node);
 
 long avl_balance_factor(const AvlNode *node);
+
+AvlNode *avl_llrotation(AvlNode *node);
+
+AvlNode *avl_lrrotation(AvlNode *node);
+
+AvlNode *avl_rlrotation(AvlNode *node);
+
+AvlNode *avl_rrrotation(AvlNode *node);

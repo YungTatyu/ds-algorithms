@@ -31,6 +31,18 @@ AvlNode *avl_recur_insert(AvlNode *node, int v) {
     node->rchild = avl_recur_insert(node->rchild, v);
   }
   node->height = avl_height_node(node);
+
+  long bf = avl_balance_factor(node);
+  long lbf = avl_balance_factor(node->lchild);
+  if (bf > 1 && lbf == 1) {
+    return avl_llrotation(node);
+  } // } else if (bf > 1 && lbf == -1) {
+  //   return avl_lrrotation(node);
+  // } else if (bf < -1 && lbf == 1) {
+  //   return avl_rlrotation(node);
+  // } else if (bf < -1 && lbf == -1) {
+  //   return avl_rrrotation(node);
+  // }
   return node;
 }
 
@@ -61,4 +73,14 @@ long avl_balance_factor(const AvlNode *node) {
   long left = node != NULL && node->lchild != NULL ? node->lchild->height : 0;
   long right = node != NULL && node->rchild != NULL ? node->rchild->height : 0;
   return left - right;
+}
+
+AvlNode *avl_llrotation(AvlNode *node) {
+  AvlNode *left = node->lchild;
+  AvlNode *left_to_right = left->rchild;
+  left->rchild = node;
+  node->lchild = left_to_right;
+  node->height = avl_height_node(node);
+  left->height = avl_height_node(left);
+  return left;
 }
