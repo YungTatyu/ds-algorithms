@@ -162,6 +162,39 @@ AvlNode *avl_lrrotation(AvlNode *node) {
   return left_to_right;
 }
 
+/**
+ * Perform a Right-Left (RL) rotation on an unbalanced AVL tree node.
+ *
+ * RL rotation is needed when a node becomes unbalanced due to a longer
+ * right-left subtree.
+ *
+ * The rotation process:
+ * - First, rotate the right child (`right`) to the right,
+ * - Then rotate the node (`node`) to the left,
+ * making the middle child (`right_to_left`) the new root of the subtree.
+ *
+ * Steps:
+ * 1. Set `node->rchild` to `right_to_left->lchild`.
+ * 2. Set `right->lchild` to `right_to_left->rchild`.
+ * 3. Make `right_to_left->lchild` point to `node`.
+ * 4. Make `right_to_left->rchild` point to `right`.
+ * 5. Update heights of `node`, `right`, and `right_to_left`.
+ *
+ * Returns:
+ * - The new root node of the subtree (`right_to_left`).
+ *
+ * Example (simple diagram):
+ *
+ *     Before rotations:                      After rotations:
+ *
+ *          node                                    right_to_left
+ *             \                                       /         \
+ *            right             =>                   node         right
+ *            /                                          \           \
+ *   right_to_left                                  left_of_rl   right_of_right
+ *     /          \
+ * left_of_rl right_of_rl
+ */
 AvlNode *avl_rlrotation(AvlNode *node) {
   AvlNode *right = node->rchild;
   AvlNode *right_to_left = right->lchild;
@@ -176,6 +209,31 @@ AvlNode *avl_rlrotation(AvlNode *node) {
   return right_to_left;
 }
 
+/**
+ * Perform a Right-Right (RR) rotation on an unbalanced AVL tree node.
+ *
+ * RR rotation fixes the case where the right subtree of the node is heavier
+ * (right-right imbalance).
+ *
+ * Steps:
+ * 1. Save the right child (`right`) and its left child (`right_to_left`).
+ * 2. Set `node->rchild` to `right_to_left`.
+ * 3. Set `right->lchild` to `node`.
+ * 4. Update the heights of `node` and `right`.
+ *
+ * Returns:
+ * - The new root node of the subtree (`right`).
+ *
+ * Example:
+ *
+ *     Before rotation:                    After rotation:
+ *
+ *          node                                  right
+ *            \                                  /
+ *           right              =>            node
+ *            /                                    \
+ *      right_to_left                         right_to_left
+ */
 AvlNode *avl_rrrotation(AvlNode *node) {
   AvlNode *right = node->rchild;
   AvlNode *right_to_left = right->lchild;
