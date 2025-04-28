@@ -34,13 +34,14 @@ AvlNode *avl_recur_insert(AvlNode *node, int v) {
 
   long bf = avl_balance_factor(node);
   long lbf = avl_balance_factor(node->lchild);
+  long rbf = avl_balance_factor(node->rchild);
   if (bf > 1 && lbf == 1) {
     return avl_llrotation(node);
   } else if (bf > 1 && lbf == -1) {
     return avl_lrrotation(node);
-  } else if (bf < -1 && lbf == 1) {
+  } else if (bf < -1 && rbf == 1) {
     return avl_rlrotation(node);
-  } else if (bf < -1 && lbf == -1) {
+  } else if (bf < -1 && rbf == -1) {
     return avl_rrrotation(node);
   }
   return node;
