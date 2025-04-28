@@ -132,12 +132,15 @@ AvlNode *avl_llrotation(AvlNode *node) {
  *
  * Simple diagram for LR rotation:
  *
- *     Before rotations:                   After rotations:
- *         node                                left_right
- *         /                                      /        \
- *      left       =>                         left        node
- *        \
- *      left_right
+ *     Before rotations:                     After rotations:
+ *
+ *         node                                    left_to_right
+ *         /                                       /          \
+ *      left       =>                         left            node
+ *        \                                        \           /
+ *      left_to_right                      left_to_rl     left_to_rr
+ *       /        \
+ * left_to_rl  left_to_rr
  *
  * (`left_left` and `right_child` are the original left and right subtrees of
  * `left` and `node` respectively, if they exist.)
@@ -148,9 +151,12 @@ AvlNode *avl_llrotation(AvlNode *node) {
 AvlNode *avl_lrrotation(AvlNode *node) {
   AvlNode *left = node->lchild;
   AvlNode *left_to_right = left->rchild;
+  node->lchild = left_to_right->rchild;
+  left->rchild = left_to_right->lchild;
   left_to_right->lchild = left;
   left_to_right->rchild = node;
 
+  left->height = avl_height_node(left);
   node->height = avl_height_node(node);
   left_to_right->height = avl_height_node(left_to_right);
   return left_to_right;
