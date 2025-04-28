@@ -245,3 +245,60 @@ AvlNode *avl_rrrotation(AvlNode *node) {
   right->height = avl_height_node(right);
   return right;
 }
+
+AvlNode *avl_recur_erase(AvlNode *root, int key) {
+  if (root == NULL) {
+    return NULL;
+  }
+  if (key < root->v) {
+    root->lchild = avl_recur_erase(root->lchild, key);
+  } else if (key > root->v) {
+    root->rchild = avl_recur_erase(root->rchild, key);
+  } else {
+    // delete leaf node
+    if (root->lchild == NULL && root->rchild == NULL) {
+      free(root);
+      return NULL;
+    } else if (avl_height_node(root->lchild) > avl_height_node(root->rchild)) {
+      AvlNode *pre = avl_inorder_predecessor(root->lchild);
+      root->v = pre->v;
+      root->lchild = avl_recur_erase(root->lchild, pre->v);
+    } else {
+      AvlNode *post = avl_inorder_successor(root->rchild);
+      root->v = post->v;
+      root->rchild = avl_recur_erase(root->rchild, post->v);
+    }
+  }
+  root->height = avl_height_node(root);
+
+  long bf = avl_balance_factor(root);
+  long lbf = avl_balance_factor(root->lchild);
+  long rbf = avl_balance_factor(root->rchild);
+
+  if (bf > 1 && (lbf == 1 || lbf == 0)) {
+    // can perfrom ll rotation or lr rotation
+    return avl_llrotation(root);
+  } else if (bf > 1 && lbf == -1) {
+    return avl_lrrotation(root);
+  } else if (bf < -1 && rbf == 1) {
+    return avl_rlrotation(root);
+  } else if (bf < -1 && (rbf == -1 || rbf == 0)) {
+    // can perfrom rl rotation or rr rotation
+    return avl_rrrotation(root);
+  }
+  return root;
+}
+
+AvlNode *avl_inorder_predecessor(const AvlNode *node) {
+  while (node != NULL && node->rchild != NULL) {
+    node = node->rchild;
+  }
+  return (AvlNode *)node;
+}
+
+AvlNode *avl_inorder_successor(const AvlNode *node) {
+  while (node != NULL && node->lchild != NULL) {
+    node = node->lchild;
+  }
+  return (AvlNode *)node;
+}
