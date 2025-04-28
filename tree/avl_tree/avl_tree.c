@@ -246,6 +246,46 @@ AvlNode *avl_rrrotation(AvlNode *node) {
   return right;
 }
 
+/**
+ * Example of deleting node 6 and performing balance adjustments in an AVL tree.
+ * Initial tree structure before deletion:
+ *
+ *         5
+ *        / \
+ *       3   6
+ *      / \
+ *     1   2
+ *
+ * Step 1: Delete node 6.
+ * After deletion, the tree structure becomes:
+ *
+ *         5
+ *        /
+ *       3
+ *      / \
+ *     1   2
+ *
+ * Step 2: Recalculate the balance factors for each node.
+ * The balance factor of node 5 becomes +2 (left-heavy).
+ * Since the right child of node 5 is NULL, we perform an LL rotation.
+ *
+ * Step 3: Perform LL Rotation to balance the tree:
+ * The tree is restructured as follows:
+ *
+ *         3
+ *        / \
+ *       1   5
+ *          /
+ *         2
+ *
+ * Explanation of the rotation:
+ * - The node 5 becomes the right child of node 3.
+ * - The subtree rooted at node 3 remains intact.
+ * - The right child of node 5 (node 2) moves to the right of node 3, preserving
+ * the balance.
+ *
+ * This completes the AVL tree balancing process after the deletion of node 6.
+ */
 AvlNode *avl_recur_erase(AvlNode *root, int key) {
   if (root == NULL) {
     return NULL;
