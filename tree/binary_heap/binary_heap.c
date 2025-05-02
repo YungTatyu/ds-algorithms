@@ -25,6 +25,18 @@ void heap_insert(int arr[], size_t index) {
   arr[index] = new_value;
 }
 
+/**
+ * @brief Deletes the maximum element (root) from a max-heap and restores the
+ * heap property.
+ *
+ * This function removes the root element (maximum in a max-heap), replaces it
+ * with the last element in the heap, and then performs a "heapify-down"
+ * operation to restore the max-heap property.
+ *
+ * @param arr The array representing the heap.
+ * @param last_index The index of the last element in the heap (size of the
+ * heap). Note: The array should have at least one element.
+ */
 void heap_delete(int arr[], size_t last_index) {
   int max = arr[0];
   arr[0] = arr[last_index];
@@ -46,6 +58,21 @@ void heap_delete(int arr[], size_t last_index) {
   arr[last_index] = max;
 }
 
+/**
+ * @brief Sorts an array using the heap sort algorithm.
+ *
+ * This function sorts an array in ascending order by first building a max-heap
+ * from the input array and then repeatedly extracting the maximum element from
+ * the heap and placing it at the end of the array.
+ *
+ * Time Complexity:
+ * - Building the max-heap: O(n log n)
+ * - Extracting elements and heapifying: O(n log n)
+ * - Overall: O(n log n)
+ *
+ * @param arr The array to be sorted.
+ * @param size The number of elements in the array.
+ */
 void heap_sort(int arr[], size_t size) {
   for (size_t i = 1; i < size; ++i) {
     heap_insert(arr, i);
