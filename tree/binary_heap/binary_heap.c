@@ -45,3 +45,12 @@ void heap_delete(int arr[], size_t last_index) {
   }
   arr[last_index] = max;
 }
+
+void heap_sort(int arr[], size_t size) {
+  for (size_t i = 1; i < size; ++i) {
+    heap_insert(arr, i);
+  }
+  for (size_t i = size - 1; i != 0; --i) {
+    heap_delete(arr, i);
+  }
+}
