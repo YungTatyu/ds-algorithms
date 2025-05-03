@@ -105,7 +105,7 @@ void heapify(int arr[], size_t size) {
  * the heap and placing it at the end of the array.
  *
  * Time Complexity:
- * - Building the max-heap: O(n log n)
+ * - Building the max-heap: O(n)
  * - Extracting elements and heapifying: O(n log n)
  * - Overall: O(n log n)
  *
