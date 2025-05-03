@@ -1,4 +1,4 @@
-#include "binary_heap.h"
+#include "heap.h"
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {

@@ -1,4 +1,4 @@
-#include "binary_heap.h"
+#include "heap.h"
 
 /**
  * @brief Inserts a new element into the heap.
@@ -37,7 +37,7 @@ void heap_insert(int arr[], size_t index) {
  * @param last_index The index of the last element in the heap (size of the
  * heap). Note: The array should have at least one element.
  */
-void heap_delete(int arr[], size_t last_index) {
+int heap_delete(int arr[], size_t last_index) {
   int max = arr[0];
   arr[0] = arr[last_index];
   size_t parent_i = 0;
@@ -57,6 +57,7 @@ void heap_delete(int arr[], size_t last_index) {
     child_i = parent_i * 2 + 1;
   }
   arr[last_index] = max;
+  return max;
 }
 
 /**
