@@ -60,6 +60,18 @@ int heap_delete(int arr[], size_t last_index) {
   return max;
 }
 
+/**
+ * @brief Converts an array into a max heap.
+ *
+ * This function rearranges the elements of the input array to satisfy
+ * the max heap property, where each parent node is greater than or
+ * equal to its child nodes.
+ *
+ * @param arr The array to be heapified.
+ * @param size The size of the array.
+ *
+ * @note Time Complexity: O(n), where n is the size of the array.
+ */
 void heapify(int arr[], size_t size) {
   size_t i = size / 2 - 1;
   while (1) {
