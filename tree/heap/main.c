@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-  int arr[] = {0, 10, 25, 5, 40, 35};
+  int arr[] = {0, 10, 25, 5, 40, 35, 0, 40, 40};
   // for (size_t i = 1; i < sizeof(arr) / sizeof(arr[0]); ++i) {
   //   heap_insert(arr, i);
   // }

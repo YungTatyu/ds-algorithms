@@ -60,6 +60,31 @@ int heap_delete(int arr[], size_t last_index) {
   return max;
 }
 
+void heapify(int arr[], size_t size) {
+  size_t i = size / 2 - 1;
+  while (1) {
+    size_t parent_i = i;
+    size_t child_i = i * 2 + 1;
+    while (child_i < size - 1) {
+      if (arr[child_i + 1] > arr[child_i]) {
+        ++child_i;
+      }
+      if (arr[parent_i] >= arr[child_i]) {
+        break;
+      }
+      int temp = arr[parent_i];
+      arr[parent_i] = arr[child_i];
+      arr[child_i] = temp;
+      parent_i = child_i;
+      child_i = parent_i * 2 + 1;
+    }
+    if (i == 0) {
+      break;
+    }
+    --i;
+  }
+}
+
 /**
  * @brief Sorts an array using the heap sort algorithm.
  *
@@ -76,9 +101,7 @@ int heap_delete(int arr[], size_t last_index) {
  * @param size The number of elements in the array.
  */
 void heap_sort(int arr[], size_t size) {
-  for (size_t i = 1; i < size; ++i) {
-    heap_insert(arr, i);
-  }
+  heapify(arr, size);
   for (size_t i = size - 1; i != 0; --i) {
     heap_delete(arr, i);
   }
