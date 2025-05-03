@@ -113,6 +113,9 @@ void heapify(int arr[], size_t size) {
  * @param size The number of elements in the array.
  */
 void heap_sort(int arr[], size_t size) {
+  if (size <= 1) {
+    return;
+  }
   heapify(arr, size);
   for (size_t i = size - 1; i != 0; --i) {
     heap_delete(arr, i);
