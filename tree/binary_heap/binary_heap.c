@@ -43,6 +43,7 @@ void heap_delete(int arr[], size_t last_index) {
   size_t parent_i = 0;
   size_t child_i = parent_i * 2 + 1;
   while (child_i < last_index) {
+    // compare left child and right child and get a bigger one
     if (arr[child_i + 1] > arr[child_i]) {
       ++child_i;
     }
